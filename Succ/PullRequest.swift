@@ -1,13 +1,25 @@
 import Apollo
 import Foundation
 
+extension PullRequest.Nodes {
+    mutating func replaceAll(_ newNodes: PullRequest.Nodes) {
+        replaceSubrange(0 ..< count, with: newNodes)
+    }
+}
+
 class PullRequest: ObservableObject {
-    struct Node: Codable {
+    struct Node: Identifiable {
         let title: String
         let url: String
         let reviewDecision: String
         let state: String
+
+        var id: String {
+            url
+        }
     }
+
+    typealias Nodes = [Node]
 
     var apollo: ApolloClient
     @Published var nodes: [Node] = []
@@ -15,6 +27,25 @@ class PullRequest: ObservableObject {
 
     init(apollo: ApolloClient) {
         self.apollo = apollo
+    }
+
+    private func unwrapError(_ err: Error) -> String {
+        var errmsg = err.localizedDescription
+
+        guard let err = err as? Apollo.ResponseCodeInterceptor.ResponseCodeError else {
+            return errmsg
+        }
+
+        switch err {
+        case .invalidResponseCode(let resp, _):
+            if let resp {
+                let statusCode = resp.statusCode
+                let statusMsg = HTTPURLResponse.localizedString(forStatusCode: statusCode)
+                errmsg = "GitHub API error: \(statusCode) \(statusMsg)"
+            }
+        }
+
+        return errmsg
     }
 
     func update(showError: Bool = false) {
@@ -29,7 +60,7 @@ class PullRequest: ObservableObject {
                 AppLogger.shared.debug("failed to search GitHub: \(error)")
 
                 if showError {
-                    self.errorMessage = error.localizedDescription
+                    self.errorMessage = self.unwrapError(error)
                 }
             }
         }
