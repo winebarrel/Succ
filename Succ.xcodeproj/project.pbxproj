@@ -320,7 +320,6 @@
 		ADC117CA2B85B66E0055E823 /* AllFilmsQuery.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ADC1169F2B85B66E0055E823 /* AllFilmsQuery.graphql */; };
 		ADDF3E9D2B85C5BE0050F540 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDF3E9C2B85C5BE0050F540 /* Constants.swift */; };
 		ADDF3E9F2B85C8870050F540 /* PullRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDF3E9E2B85C8870050F540 /* PullRequest.swift */; };
-		ADDF3EA12B85D00C0050F540 /* GraphQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDF3EA02B85D00C0050F540 /* GraphQL.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -636,7 +635,6 @@
 		ADC1169F2B85B66E0055E823 /* AllFilmsQuery.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AllFilmsQuery.graphql; sourceTree = "<group>"; };
 		ADDF3E9C2B85C5BE0050F540 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		ADDF3E9E2B85C8870050F540 /* PullRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRequest.swift; sourceTree = "<group>"; };
-		ADDF3EA02B85D00C0050F540 /* GraphQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQL.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -677,7 +675,6 @@
 				ADC115512B85A3CB0055E823 /* AppValet.swift */,
 				ADDF3E9C2B85C5BE0050F540 /* Constants.swift */,
 				AD7403CF2B85823600E15C18 /* ContentView.swift */,
-				ADDF3EA02B85D00C0050F540 /* GraphQL.swift */,
 				ADC115532B85A9BD0055E823 /* MouseHandlerView.swift */,
 				ADDF3E9E2B85C8870050F540 /* PullRequest.swift */,
 				ADC1154D2B859E900055E823 /* RightClickMenu.swift */,
@@ -1386,7 +1383,6 @@
 				ADC1170B2B85B66E0055E823 /* Push.graphql.swift in Sources */,
 				ADC117AF2B85B66E0055E823 /* UniformResourceLocatable.graphql.swift in Sources */,
 				ADC117B52B85B66E0055E823 /* Closable.graphql.swift in Sources */,
-				ADDF3EA12B85D00C0050F540 /* GraphQL.swift in Sources */,
 				ADC1172B2B85B66E0055E823 /* Reaction.graphql.swift in Sources */,
 				ADC116D42B85B66E0055E823 /* OrgRemoveMemberAuditEntry.graphql.swift in Sources */,
 				ADC1179E2B85B66E0055E823 /* SchemaConfiguration.swift in Sources */,

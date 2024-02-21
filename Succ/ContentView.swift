@@ -16,6 +16,6 @@ struct ContentView: View {
 
 #Preview {
     ContentView(
-        pullRequest: PullRequest(apollo: buildApolloClient(token: ""))
+        pullRequest: PullRequest()
     )
 }

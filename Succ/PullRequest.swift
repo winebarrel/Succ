@@ -21,12 +21,24 @@ class PullRequest: ObservableObject {
 
     typealias Nodes = [Node]
 
-    var apollo: ApolloClient
+    var apollo: ApolloClient?
     @Published var nodes: [Node] = []
     @Published var errorMessage: String = ""
 
-    init(apollo: ApolloClient) {
-        self.apollo = apollo
+    func configure(token: String) {
+        apollo = {
+            let cache = InMemoryNormalizedCache()
+            let store = ApolloStore(cache: cache)
+            let client = URLSessionClient()
+            let provider = DefaultInterceptorProvider(client: client, store: store)
+            let url = URL(string: "https://api.github.com/graphql")!
+            let transport = RequestChainNetworkTransport(
+                interceptorProvider: provider,
+                endpointURL: url,
+                additionalHeaders: ["Authorization": "Bearer \(token)"]
+            )
+            return ApolloClient(networkTransport: transport, store: store)
+        }()
     }
 
     private func unwrapError(_ err: Error) -> String {
@@ -52,7 +64,7 @@ class PullRequest: ObservableObject {
         errorMessage = ""
         let query = Github.SearchPullRequestsQuery(query: "is:open is:pr author:@me org:qubole") // TODO: fix
 
-        apollo.fetch(query: query) { result in
+        apollo?.fetch(query: query) { result in
             switch result {
             case .success(let value):
                 print(value) // TODO: fix
