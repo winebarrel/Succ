@@ -4,13 +4,14 @@ import SwiftUI
 struct SettingView: View {
     @State private var launchAtLogin: Bool = SMAppService.mainApp.status == .enabled
     @Binding var githubToken: String
+    @AppStorage("githubQuery") private var githubQuery = Constants.defaultGithubQuery
 
     var body: some View {
         Form {
             SecureField("GitHub token", text: $githubToken).onChange(of: githubToken) {
                 AppValet.githubToken = githubToken
             }
-
+            TextField("GitHub query", text: $githubQuery)
             Toggle("Launch at login", isOn: $launchAtLogin)
                 .onChange(of: launchAtLogin) {
                     do {
