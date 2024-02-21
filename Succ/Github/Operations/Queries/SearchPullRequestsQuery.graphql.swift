@@ -8,7 +8,7 @@ extension Github {
     static let operationName: String = "SearchPullRequests"
     static let operationDocument: ApolloAPI.OperationDocument = .init(
       definition: .init(
-        #"query SearchPullRequests($query: String!) { search(type: ISSUE, last: 100, query: $query) { __typename nodes { __typename ... on PullRequest { title url reviewDecision commits(last: 1) { __typename nodes { __typename commit { __typename statusCheckRollup { __typename state } } } } } } } }"#
+        #"query SearchPullRequests($query: String!) { search(type: ISSUE, last: 100, query: $query) { __typename nodes { __typename ... on PullRequest { repository { __typename name owner { __typename login } } title url reviewDecision commits(last: 1) { __typename nodes { __typename commit { __typename statusCheckRollup { __typename state } } } } } } } }"#
       ))
 
     public var query: String
@@ -76,12 +76,15 @@ extension Github {
             typealias RootEntityType = SearchPullRequestsQuery.Data.Search.Node
             static var __parentType: ApolloAPI.ParentType { Github.Objects.PullRequest }
             static var __selections: [ApolloAPI.Selection] { [
+              .field("repository", Repository.self),
               .field("title", String.self),
               .field("url", Github.URI.self),
               .field("reviewDecision", GraphQLEnum<Github.PullRequestReviewDecision>?.self),
               .field("commits", Commits.self, arguments: ["last": 1]),
             ] }
 
+            /// The repository associated with this node.
+            var repository: Repository { __data["repository"] }
             /// Identifies the pull request title.
             var title: String { __data["title"] }
             /// The HTTP URL for this pull request.
@@ -90,6 +93,43 @@ extension Github {
             var reviewDecision: GraphQLEnum<Github.PullRequestReviewDecision>? { __data["reviewDecision"] }
             /// A list of commits present in this pull request's head branch not present in the base branch.
             var commits: Commits { __data["commits"] }
+
+            /// Search.Node.AsPullRequest.Repository
+            ///
+            /// Parent Type: `Repository`
+            struct Repository: Github.SelectionSet {
+              let __data: DataDict
+              init(_dataDict: DataDict) { __data = _dataDict }
+
+              static var __parentType: ApolloAPI.ParentType { Github.Objects.Repository }
+              static var __selections: [ApolloAPI.Selection] { [
+                .field("__typename", String.self),
+                .field("name", String.self),
+                .field("owner", Owner.self),
+              ] }
+
+              /// The name of the repository.
+              var name: String { __data["name"] }
+              /// The User owner of the repository.
+              var owner: Owner { __data["owner"] }
+
+              /// Search.Node.AsPullRequest.Repository.Owner
+              ///
+              /// Parent Type: `RepositoryOwner`
+              struct Owner: Github.SelectionSet {
+                let __data: DataDict
+                init(_dataDict: DataDict) { __data = _dataDict }
+
+                static var __parentType: ApolloAPI.ParentType { Github.Interfaces.RepositoryOwner }
+                static var __selections: [ApolloAPI.Selection] { [
+                  .field("__typename", String.self),
+                  .field("login", String.self),
+                ] }
+
+                /// The username used to login.
+                var login: String { __data["login"] }
+              }
+            }
 
             /// Search.Node.AsPullRequest.Commits
             ///

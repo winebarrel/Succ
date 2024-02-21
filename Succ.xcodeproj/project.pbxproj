@@ -317,7 +317,7 @@
 		ADC117C72B85B66E0055E823 /* RepositoryAuditEntryData.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC1169C2B85B66E0055E823 /* RepositoryAuditEntryData.graphql.swift */; };
 		ADC117C82B85B66E0055E823 /* Lockable.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC1169D2B85B66E0055E823 /* Lockable.graphql.swift */; };
 		ADC117C92B85B66E0055E823 /* ProfileOwner.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC1169E2B85B66E0055E823 /* ProfileOwner.graphql.swift */; };
-		ADC117CA2B85B66E0055E823 /* AllFilmsQuery.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ADC1169F2B85B66E0055E823 /* AllFilmsQuery.graphql */; };
+		ADC117CA2B85B66E0055E823 /* SearchPullRequests.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ADC1169F2B85B66E0055E823 /* SearchPullRequests.graphql */; };
 		ADDF3E9D2B85C5BE0050F540 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDF3E9C2B85C5BE0050F540 /* Constants.swift */; };
 		ADDF3E9F2B85C8870050F540 /* PullRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDF3E9E2B85C8870050F540 /* PullRequest.swift */; };
 /* End PBXBuildFile section */
@@ -632,7 +632,7 @@
 		ADC1169C2B85B66E0055E823 /* RepositoryAuditEntryData.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryAuditEntryData.graphql.swift; sourceTree = "<group>"; };
 		ADC1169D2B85B66E0055E823 /* Lockable.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lockable.graphql.swift; sourceTree = "<group>"; };
 		ADC1169E2B85B66E0055E823 /* ProfileOwner.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileOwner.graphql.swift; sourceTree = "<group>"; };
-		ADC1169F2B85B66E0055E823 /* AllFilmsQuery.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AllFilmsQuery.graphql; sourceTree = "<group>"; };
+		ADC1169F2B85B66E0055E823 /* SearchPullRequests.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SearchPullRequests.graphql; sourceTree = "<group>"; };
 		ADDF3E9C2B85C5BE0050F540 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		ADDF3E9E2B85C8870050F540 /* PullRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -698,7 +698,7 @@
 		ADC1156C2B85B66E0055E823 /* Github */ = {
 			isa = PBXGroup;
 			children = (
-				ADC1169F2B85B66E0055E823 /* AllFilmsQuery.graphql */,
+				ADC1169F2B85B66E0055E823 /* SearchPullRequests.graphql */,
 				ADC1156D2B85B66E0055E823 /* schema.graphqls */,
 				ADC1156E2B85B66E0055E823 /* Github.graphql.swift */,
 				ADC1156F2B85B66E0055E823 /* Operations */,
@@ -1134,7 +1134,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADC117CA2B85B66E0055E823 /* AllFilmsQuery.graphql in Resources */,
+				ADC117CA2B85B66E0055E823 /* SearchPullRequests.graphql in Resources */,
 				AD7403D52B85823700E15C18 /* Preview Assets.xcassets in Resources */,
 				ADC116A02B85B66E0055E823 /* schema.graphqls in Resources */,
 				AD7403D22B85823700E15C18 /* Assets.xcassets in Resources */,

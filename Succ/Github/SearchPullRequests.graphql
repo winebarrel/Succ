@@ -2,6 +2,12 @@ query SearchPullRequests($query: String!) {
   search(type: ISSUE, last: 100, query: $query) {
     nodes {
       ... on PullRequest {
+        repository {
+          name
+          owner {
+            login
+          }
+        }
         title
         url
         reviewDecision

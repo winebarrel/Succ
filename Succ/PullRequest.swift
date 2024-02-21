@@ -9,6 +9,8 @@ extension PullRequest.Nodes {
 
 class PullRequest: ObservableObject {
     struct Node: Identifiable {
+        let owner: String
+        let repo: String
         let title: String
         let url: String
         let reviewDecision: String
@@ -93,10 +95,12 @@ class PullRequest: ObservableObject {
                 }
 
                 let node = Node(
+                    owner: pull.repository.name,
+                    repo: pull.repository.owner.login,
                     title: pull.title,
                     url: pull.url,
                     reviewDecision: pull.reviewDecision?.rawValue ?? "",
-                    state: pull.commits.nodes?.first??.commit.statusCheckRollup?.state.rawValue ?? ""
+                    state: state.rawValue
                 )
 
                 newNodes.append(node)
