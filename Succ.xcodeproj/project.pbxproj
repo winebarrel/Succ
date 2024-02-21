@@ -11,6 +11,9 @@
 		AD7403D02B85823600E15C18 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7403CF2B85823600E15C18 /* ContentView.swift */; };
 		AD7403D22B85823700E15C18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD7403D12B85823700E15C18 /* Assets.xcassets */; };
 		AD7403D52B85823700E15C18 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD7403D42B85823700E15C18 /* Preview Assets.xcassets */; };
+		ADC115462B8587430055E823 /* MenuBarExtraAccess in Frameworks */ = {isa = PBXBuildFile; productRef = ADC115452B8587430055E823 /* MenuBarExtraAccess */; };
+		ADC115492B8587570055E823 /* Valet in Frameworks */ = {isa = PBXBuildFile; productRef = ADC115482B8587570055E823 /* Valet */; };
+		ADC1154C2B85877D0055E823 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = ADC1154B2B85877D0055E823 /* Apollo */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +30,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADC115462B8587430055E823 /* MenuBarExtraAccess in Frameworks */,
+				ADC1154C2B85877D0055E823 /* Apollo in Frameworks */,
+				ADC115492B8587570055E823 /* Valet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +92,11 @@
 			dependencies = (
 			);
 			name = Succ;
+			packageProductDependencies = (
+				ADC115452B8587430055E823 /* MenuBarExtraAccess */,
+				ADC115482B8587570055E823 /* Valet */,
+				ADC1154B2B85877D0055E823 /* Apollo */,
+			);
 			productName = Succ;
 			productReference = AD7403CA2B85823600E15C18 /* Succ.app */;
 			productType = "com.apple.product-type.application";
@@ -114,6 +125,11 @@
 				Base,
 			);
 			mainGroup = AD7403C12B85823600E15C18;
+			packageReferences = (
+				ADC115442B8587430055E823 /* XCRemoteSwiftPackageReference "MenuBarExtraAccess" */,
+				ADC115472B8587570055E823 /* XCRemoteSwiftPackageReference "Valet" */,
+				ADC1154A2B85877D0055E823 /* XCRemoteSwiftPackageReference "apollo-ios" */,
+			);
 			productRefGroup = AD7403CB2B85823600E15C18 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -366,6 +382,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		ADC115442B8587430055E823 /* XCRemoteSwiftPackageReference "MenuBarExtraAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/orchetect/MenuBarExtraAccess";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.5;
+			};
+		};
+		ADC115472B8587570055E823 /* XCRemoteSwiftPackageReference "Valet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/square/Valet.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.0;
+			};
+		};
+		ADC1154A2B85877D0055E823 /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		ADC115452B8587430055E823 /* MenuBarExtraAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ADC115442B8587430055E823 /* XCRemoteSwiftPackageReference "MenuBarExtraAccess" */;
+			productName = MenuBarExtraAccess;
+		};
+		ADC115482B8587570055E823 /* Valet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ADC115472B8587570055E823 /* XCRemoteSwiftPackageReference "Valet" */;
+			productName = Valet;
+		};
+		ADC1154B2B85877D0055E823 /* Apollo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ADC1154A2B85877D0055E823 /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = Apollo;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AD7403C22B85823600E15C18 /* Project object */;
 }
