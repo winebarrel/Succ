@@ -63,6 +63,37 @@ class PullRequest: ObservableObject {
         return errmsg
     }
 
+    private func updateNodes(_ value: GraphQLResult<Github.SearchPullRequestsQuery.Data>) {
+        var newNodes: Nodes = []
+
+        value.data?.search.nodes?.forEach { body in
+            if let pull = body?.asPullRequest {
+                if let reviewDecision = pull.reviewDecision, reviewDecision != .approved {
+                    return
+                }
+
+                guard let state = pull.commits.nodes?.first??.commit.statusCheckRollup?.state else {
+                    return
+                }
+
+                if state != .success {
+                    return
+                }
+
+                let node = Node(
+                    title: pull.title,
+                    url: pull.url,
+                    reviewDecision: pull.reviewDecision?.rawValue ?? "",
+                    state: pull.commits.nodes?.first??.commit.statusCheckRollup?.state.rawValue ?? ""
+                )
+
+                newNodes.append(node)
+            }
+        }
+
+        nodes.replaceAll(newNodes)
+    }
+
     func update(showError: Bool = false) {
         errorMessage = ""
         let query = Github.SearchPullRequestsQuery(query: githubQuery)
@@ -70,7 +101,7 @@ class PullRequest: ObservableObject {
         apollo?.fetch(query: query) { result in
             switch result {
             case .success(let value):
-                print(value) // TODO: fix
+                self.updateNodes(value)
             case .failure(let error):
                 AppLogger.shared.debug("failed to search GitHub: \(error)")
 
@@ -78,6 +109,9 @@ class PullRequest: ObservableObject {
                     self.errorMessage = self.unwrapError(error)
                 }
             }
+
+            // TODO: debug
+            print(self.nodes)
         }
     }
 }
