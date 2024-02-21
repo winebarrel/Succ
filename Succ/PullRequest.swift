@@ -26,7 +26,15 @@ class PullRequest: ObservableObject {
     var initialized = false
 
     @Published var nodes: [Node] = []
+    @Published var updatedAt = "-"
     @Published var errorMessage: String = ""
+
+    private let dateFmt = {
+        let dtfmt = DateFormatter()
+        dtfmt.dateStyle = .none
+        dtfmt.timeStyle = .short
+        return dtfmt
+    }()
 
     func configure(token: String, query: String) {
         initialized = true
@@ -96,6 +104,7 @@ class PullRequest: ObservableObject {
         }
 
         nodes.replaceAll(newNodes)
+        updatedAt = dateFmt.string(from: Date())
     }
 
     func update(showError: Bool = false) {

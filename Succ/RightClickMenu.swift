@@ -18,7 +18,7 @@ struct RightClickMenu: View {
         }
         Divider()
         Button("Update Manually") {
-            pullRequest.update()
+            pullRequest.update(showError: true)
         }
         SettingsLink {
             Text("Settings")
