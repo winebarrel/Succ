@@ -126,9 +126,6 @@ class PullRequest: ObservableObject {
                     self.errorMessage = self.unwrapError(error)
                 }
             }
-
-            // TODO: debug
-            print(self.nodes)
         }
     }
 }
