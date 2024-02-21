@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var pullRequest: PullRequest
+    @State private var hoverId: String = ""
 
     var body: some View {
         VStack {
@@ -24,14 +25,12 @@ struct ContentView: View {
                     }
                 }
             } else {
-                // TODO: fix
-                List {
+                List(pullRequest.nodes) { node in
                     HStack {
-                        Spacer()
-                        Image(systemName: "rectangle.portrait.on.rectangle.portrait.slash")
-                            .imageScale(.large)
-                        Text("No pull requests")
-                        Spacer()
+                        Link(destination: URL(string: node.url)!) {
+                            Text("[\(node.owner)/\(node.repo)] \(node.title)")
+                                .multilineTextAlignment(.leading)
+                        }
                     }
                 }
             }
