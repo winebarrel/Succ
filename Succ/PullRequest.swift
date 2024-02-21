@@ -44,6 +44,7 @@ class PullRequest: ObservableObject {
             )
             return ApolloClient(networkTransport: transport, store: store)
         }()
+
         githubQuery = query
     }
 
