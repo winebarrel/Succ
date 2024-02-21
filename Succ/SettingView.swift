@@ -11,7 +11,12 @@ struct SettingView: View {
             SecureField("GitHub token", text: $githubToken).onChange(of: githubToken) {
                 AppValet.githubToken = githubToken
             }
-            TextField("GitHub query", text: $githubQuery)
+            HStack {
+                TextField("GitHub query", text: $githubQuery)
+                Link(destination: URL(string: "https://github.com/pulls?q=" + (githubQuery.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""))!) {
+                    Image(systemName: "magnifyingglass")
+                }
+            }
             Toggle("Launch at login", isOn: $launchAtLogin)
                 .onChange(of: launchAtLogin) {
                     do {
