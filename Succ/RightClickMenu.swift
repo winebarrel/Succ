@@ -32,6 +32,6 @@ struct RightClickMenu: View {
 
 #Preview {
     RightClickMenu(
-        pullRequest: PullRequest(apollo: buildApolloClient(token: ""))
+        pullRequest: PullRequest()
     )
 }

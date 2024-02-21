@@ -5,7 +5,7 @@ import SwiftUI
 struct SuccApp: App {
     @State var isMenuPresented = false
     @State var githubToken = AppValet.githubToken
-    @StateObject var pullRequest = PullRequest(apollo: buildApolloClient(token: AppValet.githubToken))
+    @StateObject var pullRequest = PullRequest()
 
     private var popover: NSPopover = {
         let pop = NSPopover()
@@ -20,6 +20,10 @@ struct SuccApp: App {
         } label: {
             Image(systemName: "leaf")
         }.menuBarExtraAccess(isPresented: $isMenuPresented) { statusItem in
+            if pullRequest.apollo == nil {
+                pullRequest.configure(token: githubToken)
+            }
+
             if popover.contentViewController == nil {
                 let view = ContentView(pullRequest: pullRequest)
                 popover.contentViewController = NSHostingController(rootView: view)
@@ -45,7 +49,7 @@ struct SuccApp: App {
                 githubToken: $githubToken
             ).onReceive(NotificationCenter.default.publisher(for: NSWindow.willCloseNotification)) { notification in
                 if let window = notification.object as? NSWindow, window.title == "Succ Settings" {
-                    pullRequest.apollo = buildApolloClient(token: githubToken)
+                    pullRequest.configure(token: githubToken)
                     pullRequest.update()
                 }
             }
