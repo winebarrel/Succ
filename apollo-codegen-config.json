@@ -1,0 +1,27 @@
+{
+  "schemaNamespace": "Github",
+  "input": {
+    "operationSearchPaths": [
+      "**/*.graphql"
+    ],
+    "schemaSearchPaths": [
+      "**/*.graphqls"
+    ]
+  },
+  "output": {
+    "testMocks": {
+      "none": {}
+    },
+    "schemaTypes": {
+      "path": "Succ/Github",
+      "moduleType": {
+        "embeddedInTarget": {
+          "name": "Succ"
+        }
+      }
+    },
+    "operations": {
+      "inSchemaModule": {}
+    }
+  }
+}
