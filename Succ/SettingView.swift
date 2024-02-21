@@ -2,9 +2,9 @@ import ServiceManagement
 import SwiftUI
 
 struct SettingView: View {
-    @State private var launchAtLogin: Bool = SMAppService.mainApp.status == .enabled
     @Binding var githubToken: String
     @AppStorage("githubQuery") private var githubQuery = Constants.defaultGithubQuery
+    @State private var launchAtLogin: Bool = SMAppService.mainApp.status == .enabled
 
     var body: some View {
         Form {
