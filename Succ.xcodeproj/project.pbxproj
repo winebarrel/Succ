@@ -18,6 +18,7 @@
 		ADC115502B85A3870055E823 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC1154F2B85A3870055E823 /* AppLogger.swift */; };
 		ADC115522B85A3CB0055E823 /* AppValet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC115512B85A3CB0055E823 /* AppValet.swift */; };
 		ADC115542B85A9BD0055E823 /* MouseHandlerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC115532B85A9BD0055E823 /* MouseHandlerView.swift */; };
+		ADC115562B85ACFD0055E823 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC115552B85ACFD0055E823 /* SettingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		ADC1154F2B85A3870055E823 /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
 		ADC115512B85A3CB0055E823 /* AppValet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppValet.swift; sourceTree = "<group>"; };
 		ADC115532B85A9BD0055E823 /* MouseHandlerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseHandlerView.swift; sourceTree = "<group>"; };
+		ADC115552B85ACFD0055E823 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				AD7403CF2B85823600E15C18 /* ContentView.swift */,
 				ADC115532B85A9BD0055E823 /* MouseHandlerView.swift */,
 				ADC1154D2B859E900055E823 /* RightClickMenu.swift */,
+				ADC115552B85ACFD0055E823 /* SettingView.swift */,
 				AD7403CD2B85823600E15C18 /* SuccApp.swift */,
 				AD7403D12B85823700E15C18 /* Assets.xcassets */,
 				AD7403D32B85823700E15C18 /* Preview Content */,
@@ -193,6 +196,7 @@
 				AD7403D02B85823600E15C18 /* ContentView.swift in Sources */,
 				ADC1154E2B859E900055E823 /* RightClickMenu.swift in Sources */,
 				AD7403CE2B85823600E15C18 /* SuccApp.swift in Sources */,
+				ADC115562B85ACFD0055E823 /* SettingView.swift in Sources */,
 				ADC115502B85A3870055E823 /* AppLogger.swift in Sources */,
 				ADC115522B85A3CB0055E823 /* AppValet.swift in Sources */,
 				ADC115542B85A9BD0055E823 /* MouseHandlerView.swift in Sources */,
