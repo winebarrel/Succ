@@ -1,0 +1,20 @@
+query SearchPullRequests($query: String!) {
+  search(type: ISSUE, last: 100, query: $query) {
+    nodes {
+      ... on PullRequest {
+        title
+        url
+        reviewDecision
+        commits(last: 1) {
+          nodes {
+            commit {
+              statusCheckRollup {
+                state
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
