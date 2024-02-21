@@ -1,13 +1,8 @@
-//
-//  ContentView.swift
-//  Succ
-//
-//  Created by 菅原元気 on 2024/02/21.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var pullRequest: PullRequest
+
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -20,5 +15,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView(
+        pullRequest: PullRequest(apollo: buildApolloClient(token: ""))
+    )
 }
