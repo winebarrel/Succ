@@ -5,12 +5,42 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+            if !pullRequest.errorMessage.isEmpty {
+                HStack {
+                    Spacer()
+                    Image(systemName: "exclamationmark.triangle")
+                        .imageScale(.large)
+                    Text(pullRequest.errorMessage)
+                    Spacer()
+                }
+            } else if pullRequest.nodes.isEmpty {
+                List {
+                    HStack {
+                        Spacer()
+                        Image(systemName: "rectangle.portrait.on.rectangle.portrait.slash")
+                            .imageScale(.large)
+                        Text("No pull requests")
+                        Spacer()
+                    }
+                }
+            } else {
+                // TODO: fix
+                List {
+                    HStack {
+                        Spacer()
+                        Image(systemName: "rectangle.portrait.on.rectangle.portrait.slash")
+                            .imageScale(.large)
+                        Text("No pull requests")
+                        Spacer()
+                    }
+                }
+            }
+            HStack {
+                Image(systemName: "clock.arrow.circlepath")
+                Text(pullRequest.updatedAt)
+            }
+            .padding(.bottom, 5)
+        }.background(.background)
     }
 }
 
