@@ -38,5 +38,8 @@ struct SuccApp: App {
                 button.addSubview(mouseHandlerView)
             }
         }
+        Settings {
+            SettingView()
+        }
     }
 }
