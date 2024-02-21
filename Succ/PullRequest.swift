@@ -22,10 +22,12 @@ class PullRequest: ObservableObject {
     typealias Nodes = [Node]
 
     var apollo: ApolloClient?
+    var githubQuery = Constants.defaultGithubQuery
+
     @Published var nodes: [Node] = []
     @Published var errorMessage: String = ""
 
-    func configure(token: String) {
+    func configure(token: String, query: String) {
         apollo = {
             let cache = InMemoryNormalizedCache()
             let store = ApolloStore(cache: cache)
@@ -39,6 +41,7 @@ class PullRequest: ObservableObject {
             )
             return ApolloClient(networkTransport: transport, store: store)
         }()
+        githubQuery = query
     }
 
     private func unwrapError(_ err: Error) -> String {
@@ -62,7 +65,7 @@ class PullRequest: ObservableObject {
 
     func update(showError: Bool = false) {
         errorMessage = ""
-        let query = Github.SearchPullRequestsQuery(query: "is:open is:pr author:@me org:qubole") // TODO: fix
+        let query = Github.SearchPullRequestsQuery(query: githubQuery)
 
         apollo?.fetch(query: query) { result in
             switch result {

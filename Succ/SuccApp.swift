@@ -4,8 +4,9 @@ import SwiftUI
 @main
 struct SuccApp: App {
     @State var isMenuPresented = false
-    @State var githubToken = AppValet.githubToken
     @StateObject var pullRequest = PullRequest()
+    @State var githubToken = AppValet.githubToken
+    @AppStorage("githubQuery") private var githubQuery = Constants.defaultGithubQuery
 
     private var popover: NSPopover = {
         let pop = NSPopover()
@@ -21,7 +22,10 @@ struct SuccApp: App {
             Image(systemName: "leaf")
         }.menuBarExtraAccess(isPresented: $isMenuPresented) { statusItem in
             if pullRequest.apollo == nil {
-                pullRequest.configure(token: githubToken)
+                pullRequest.configure(
+                    token: githubToken,
+                    query: githubQuery
+                )
             }
 
             if popover.contentViewController == nil {
@@ -49,7 +53,10 @@ struct SuccApp: App {
                 githubToken: $githubToken
             ).onReceive(NotificationCenter.default.publisher(for: NSWindow.willCloseNotification)) { notification in
                 if let window = notification.object as? NSWindow, window.title == "Succ Settings" {
-                    pullRequest.configure(token: githubToken)
+                    pullRequest.configure(
+                        token: githubToken,
+                        query: githubQuery
+                    )
                     pullRequest.update()
                 }
             }
