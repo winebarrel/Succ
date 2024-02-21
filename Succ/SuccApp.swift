@@ -51,14 +51,12 @@ struct SuccApp: App {
         Settings {
             SettingView(
                 githubToken: $githubToken
-            ).onReceive(NotificationCenter.default.publisher(for: NSWindow.willCloseNotification)) { notification in
-                if let window = notification.object as? NSWindow, window.title == "Succ Settings" {
-                    pullRequest.configure(
-                        token: githubToken,
-                        query: githubQuery
-                    )
-                    pullRequest.update()
-                }
+            ).onClosed {
+                pullRequest.configure(
+                    token: githubToken,
+                    query: githubQuery
+                )
+                pullRequest.update()
             }
         }
     }
