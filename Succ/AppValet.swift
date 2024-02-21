@@ -7,10 +7,13 @@ enum AppValet {
         get {
             do {
                 return try self.shared.string(forKey: "githubToken")
+            } catch KeychainError.itemNotFound {
+                // nothing to do
             } catch {
                 AppLogger.shared.error("failed to get githubToken from Valet: \(error)")
-                return ""
             }
+
+            return ""
         }
 
         set(token) {
