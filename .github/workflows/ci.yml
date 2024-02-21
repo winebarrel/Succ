@@ -58,6 +58,10 @@ jobs:
           # apply provisioning profile
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+      - uses: irgaly/xcode-cache@v1
+        with:
+          key: xcode-cache-deriveddata-${{ github.workflow }}-${{ github.sha }}
+          restore-keys: xcode-cache-deriveddata-${{ github.workflow }}-
       - name: Build and Analyse
         run: |
-          xcodebuild clean build analyze -scheme Succ -destination 'generic/platform=macOS'
+          xcodebuild build analyze -scheme Succ -destination 'generic/platform=macOS'
