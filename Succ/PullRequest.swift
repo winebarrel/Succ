@@ -21,13 +21,16 @@ class PullRequest: ObservableObject {
 
     typealias Nodes = [Node]
 
-    var apollo: ApolloClient?
-    var githubQuery = Constants.defaultGithubQuery
+    private var apollo: ApolloClient?
+    private var githubQuery = Constants.defaultGithubQuery
+    var initialized = false
 
     @Published var nodes: [Node] = []
     @Published var errorMessage: String = ""
 
     func configure(token: String, query: String) {
+        initialized = true
+
         apollo = {
             let cache = InMemoryNormalizedCache()
             let store = ApolloStore(cache: cache)

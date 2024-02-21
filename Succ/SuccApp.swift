@@ -21,7 +21,7 @@ struct SuccApp: App {
         } label: {
             Image(systemName: "leaf")
         }.menuBarExtraAccess(isPresented: $isMenuPresented) { statusItem in
-            if pullRequest.apollo == nil {
+            if !pullRequest.initialized {
                 pullRequest.configure(
                     token: githubToken,
                     query: githubQuery
