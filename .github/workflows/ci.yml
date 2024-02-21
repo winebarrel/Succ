@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: SwiftLint
+      - name: Lint
         uses: norio-nomura/action-swiftlint@3.2.1
 
   build:
@@ -58,6 +58,11 @@ jobs:
           # apply provisioning profile
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+      - name: Restore cache
+        uses: irgaly/xcode-cache@v1
+        with:
+          key: xcode-cache-deriveddata-${{ github.workflow }}-${{ github.sha }}
+          restore-keys: xcode-cache-deriveddata-${{ github.workflow }}-
       - name: Build and Analyse
         run: |
-          xcodebuild clean build analyze -scheme Succ -destination 'generic/platform=macOS'
+          xcodebuild build analyze -scheme Succ -destination 'generic/platform=macOS'
