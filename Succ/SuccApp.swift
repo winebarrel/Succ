@@ -3,7 +3,8 @@ import SwiftUI
 
 @main
 struct SuccApp: App {
-    @State var isMenuPresented: Bool = false
+    @State var isMenuPresented = false
+    @State var githubToken = AppValet.githubToken
 
     private var popover: NSPopover = {
         let pop = NSPopover()
@@ -39,7 +40,9 @@ struct SuccApp: App {
             }
         }
         Settings {
-            SettingView()
+            SettingView(
+                githubToken: $githubToken
+            )
         }
     }
 }

@@ -3,9 +3,14 @@ import SwiftUI
 
 struct SettingView: View {
     @State private var launchAtLogin: Bool = SMAppService.mainApp.status == .enabled
+    @Binding var githubToken: String
 
     var body: some View {
         Form {
+            SecureField("GitHub token", text: $githubToken).onChange(of: githubToken) {
+                AppValet.githubToken = githubToken
+            }
+
             Toggle("Launch at login", isOn: $launchAtLogin)
                 .onChange(of: launchAtLogin) {
                     do {
@@ -25,5 +30,7 @@ struct SettingView: View {
 }
 
 #Preview {
-    SettingView()
+    SettingView(
+        githubToken: .constant("")
+    )
 }
