@@ -14,6 +14,7 @@
 		ADC115462B8587430055E823 /* MenuBarExtraAccess in Frameworks */ = {isa = PBXBuildFile; productRef = ADC115452B8587430055E823 /* MenuBarExtraAccess */; };
 		ADC115492B8587570055E823 /* Valet in Frameworks */ = {isa = PBXBuildFile; productRef = ADC115482B8587570055E823 /* Valet */; };
 		ADC1154C2B85877D0055E823 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = ADC1154B2B85877D0055E823 /* Apollo */; };
+		ADC1154E2B859E900055E823 /* RightClickMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC1154D2B859E900055E823 /* RightClickMenu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		AD7403D12B85823700E15C18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD7403D42B85823700E15C18 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AD7403D62B85823700E15C18 /* Succ.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Succ.entitlements; sourceTree = "<group>"; };
+		ADC1154D2B859E900055E823 /* RightClickMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightClickMenu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				AD7403D12B85823700E15C18 /* Assets.xcassets */,
 				AD7403D62B85823700E15C18 /* Succ.entitlements */,
 				AD7403D32B85823700E15C18 /* Preview Content */,
+				ADC1154D2B859E900055E823 /* RightClickMenu.swift */,
 			);
 			path = Succ;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD7403D02B85823600E15C18 /* ContentView.swift in Sources */,
+				ADC1154E2B859E900055E823 /* RightClickMenu.swift in Sources */,
 				AD7403CE2B85823600E15C18 /* SuccApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,6 +323,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -347,6 +352,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
