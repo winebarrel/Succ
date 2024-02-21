@@ -318,6 +318,7 @@
 		ADC117C82B85B66E0055E823 /* Lockable.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC1169D2B85B66E0055E823 /* Lockable.graphql.swift */; };
 		ADC117C92B85B66E0055E823 /* ProfileOwner.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC1169E2B85B66E0055E823 /* ProfileOwner.graphql.swift */; };
 		ADC117CA2B85B66E0055E823 /* AllFilmsQuery.graphql in Resources */ = {isa = PBXBuildFile; fileRef = ADC1169F2B85B66E0055E823 /* AllFilmsQuery.graphql */; };
+		ADDF3E9D2B85C5BE0050F540 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDF3E9C2B85C5BE0050F540 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -631,6 +632,7 @@
 		ADC1169D2B85B66E0055E823 /* Lockable.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lockable.graphql.swift; sourceTree = "<group>"; };
 		ADC1169E2B85B66E0055E823 /* ProfileOwner.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileOwner.graphql.swift; sourceTree = "<group>"; };
 		ADC1169F2B85B66E0055E823 /* AllFilmsQuery.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AllFilmsQuery.graphql; sourceTree = "<group>"; };
+		ADDF3E9C2B85C5BE0050F540 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -669,6 +671,7 @@
 				AD7403D62B85823700E15C18 /* Succ.entitlements */,
 				ADC1154F2B85A3870055E823 /* AppLogger.swift */,
 				ADC115512B85A3CB0055E823 /* AppValet.swift */,
+				ADDF3E9C2B85C5BE0050F540 /* Constants.swift */,
 				AD7403CF2B85823600E15C18 /* ContentView.swift */,
 				ADC115532B85A9BD0055E823 /* MouseHandlerView.swift */,
 				ADC1154D2B859E900055E823 /* RightClickMenu.swift */,
@@ -1389,6 +1392,7 @@
 				ADC116F32B85B66E0055E823 /* DeployKey.graphql.swift in Sources */,
 				ADC116A92B85B66E0055E823 /* UnlockedEvent.graphql.swift in Sources */,
 				ADC117842B85B66E0055E823 /* UnlabeledEvent.graphql.swift in Sources */,
+				ADDF3E9D2B85C5BE0050F540 /* Constants.swift in Sources */,
 				ADC1171F2B85B66E0055E823 /* RepoCreateAuditEntry.graphql.swift in Sources */,
 				ADC1177A2B85B66E0055E823 /* TransferredEvent.graphql.swift in Sources */,
 				ADC117352B85B66E0055E823 /* TeamDiscussion.graphql.swift in Sources */,
