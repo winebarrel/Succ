@@ -21,9 +21,10 @@ class PullRequest: ObservableObject {
         let url: String
         let reviewDecision: String
         let state: String
+        let commitUrl: String
 
         var id: String {
-            url
+            commitUrl
         }
 
         var titleWithRepo: String {
@@ -93,7 +94,11 @@ class PullRequest: ObservableObject {
                     return
                 }
 
-                guard let state = pull.commits.nodes?.first??.commit.statusCheckRollup?.state else {
+                guard let commit = pull.commits.nodes?.first??.commit else {
+                    return
+                }
+
+                guard let state = commit.statusCheckRollup?.state else {
                     return
                 }
 
@@ -107,7 +112,8 @@ class PullRequest: ObservableObject {
                     title: pull.title,
                     url: pull.url,
                     reviewDecision: pull.reviewDecision?.rawValue ?? "",
-                    state: state.rawValue
+                    state: state.rawValue,
+                    commitUrl: commit.url
                 )
 
                 fetchedNodes.append(node)

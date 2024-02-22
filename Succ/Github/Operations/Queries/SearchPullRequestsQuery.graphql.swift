@@ -8,7 +8,7 @@ extension Github {
     static let operationName: String = "SearchPullRequests"
     static let operationDocument: ApolloAPI.OperationDocument = .init(
       definition: .init(
-        #"query SearchPullRequests($query: String!) { search(type: ISSUE, last: 100, query: $query) { __typename nodes { __typename ... on PullRequest { repository { __typename name owner { __typename login } } title url reviewDecision commits(last: 1) { __typename nodes { __typename commit { __typename statusCheckRollup { __typename state } } } } } } } }"#
+        #"query SearchPullRequests($query: String!) { search(type: ISSUE, last: 100, query: $query) { __typename nodes { __typename ... on PullRequest { repository { __typename name owner { __typename login } } title url reviewDecision commits(last: 1) { __typename nodes { __typename commit { __typename url statusCheckRollup { __typename state } } } } } } } }"#
       ))
 
     public var query: String
@@ -173,9 +173,12 @@ extension Github {
                   static var __parentType: ApolloAPI.ParentType { Github.Objects.Commit }
                   static var __selections: [ApolloAPI.Selection] { [
                     .field("__typename", String.self),
+                    .field("url", Github.URI.self),
                     .field("statusCheckRollup", StatusCheckRollup?.self),
                   ] }
 
+                  /// The HTTP URL for this commit
+                  var url: Github.URI { __data["url"] }
                   /// Check and Status rollup information for this commit.
                   var statusCheckRollup: StatusCheckRollup? { __data["statusCheckRollup"] }
 
