@@ -149,7 +149,7 @@ class PullRequest: ObservableObject {
         errorMessage = ""
         let query = Github.SearchPullRequestsQuery(query: githubQuery)
 
-        apollo?.fetch(query: query) { result in
+        apollo?.fetch(query: query, cachePolicy: .fetchIgnoringCacheCompletely) { result in
             switch result {
             case .success(let value):
                 self.updateNodes(value)
