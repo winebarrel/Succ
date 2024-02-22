@@ -12,11 +12,11 @@ Download from [releases page](https://github.com/winebarrel/Succ/releases/latest
 
 ### Show pull requests
 
-![](https://github.com/winebarrel/Succ/assets/117768/58ce64a0-abbb-4b47-8d15-f79182cf1ada)
+![](https://github.com/winebarrel/Succ/assets/117768/08586030-4247-4fac-9749-1a48c968850a)
 
 ### Notifications
 
-![](https://github.com/winebarrel/Succ/assets/117768/f90cf839-ceb3-4910-b471-f264f5706d51)
+![](https://github.com/winebarrel/Succ/assets/117768/2cc010bb-64b7-4557-8828-6ca3be9e303f)
 
 ### Icons indicate status
 
@@ -24,6 +24,7 @@ Download from [releases page](https://github.com/winebarrel/Succ/releases/latest
 | - | - |
 | ![](https://github.com/winebarrel/Succ/assets/117768/cd43f586-3b04-4803-9093-1d45ba4bb173) | No pull requests |
 | ![](https://github.com/winebarrel/Succ/assets/117768/5a1d1f6e-0315-4500-8529-6ce2eaced785) | There is a pull request that has passed testing and been approved |
+| ![](https://github.com/winebarrel/Succ/assets/117768/8877594c-8e5d-4c37-b9af-db7f9b301c30) | There is a pull request that failed the test |
 
 ## Getting Started
 
