@@ -5,6 +5,7 @@ struct SettingView: View {
     @Binding var githubToken: String
     @AppStorage("githubQuery") private var githubQuery = Constants.defaultGithubQuery
     @State private var launchAtLogin: Bool = SMAppService.mainApp.status == .enabled
+    @Binding var timerInterval: TimeInterval
 
     var body: some View {
         Form {
@@ -17,6 +18,14 @@ struct SettingView: View {
                     Image(systemName: "magnifyingglass")
                 }
             }
+            TextField("Interval (sec)", value: $timerInterval, format: .number.grouping(.never))
+                .onChange(of: timerInterval) {
+                    if timerInterval < 1 {
+                        timerInterval = 1
+                    } else if timerInterval > 3600 {
+                        timerInterval = 3600
+                    }
+                }
             Toggle("Launch at login", isOn: $launchAtLogin)
                 .onChange(of: launchAtLogin) {
                     do {
@@ -45,6 +54,7 @@ struct SettingView: View {
 
 #Preview {
     SettingView(
-        githubToken: .constant("")
+        githubToken: .constant(""),
+        timerInterval: .constant(300)
     )
 }

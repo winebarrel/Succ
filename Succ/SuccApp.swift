@@ -8,6 +8,8 @@ struct SuccApp: App {
     @StateObject private var pullRequest = PullRequest()
     @State private var githubToken = AppValet.githubToken
     @AppStorage("githubQuery") private var githubQuery = Constants.defaultGithubQuery
+    @State private var timer: Timer?
+    @State private var timetInterval: TimeInterval = 300
 
     private var popover: NSPopover = {
         let pop = NSPopover()
@@ -24,6 +26,16 @@ struct SuccApp: App {
 
         let view = ContentView(pullRequest: pullRequest)
         popover.contentViewController = NSHostingController(rootView: view)
+
+        scheduleUpdate()
+    }
+
+    func scheduleUpdate() {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: timetInterval, repeats: true) { _ in
+            pullRequest.update()
+        }
+        timer?.fire()
     }
 
     var body: some Scene {
@@ -54,13 +66,15 @@ struct SuccApp: App {
         }
         Settings {
             SettingView(
-                githubToken: $githubToken
+                githubToken: $githubToken,
+                timerInterval: $timetInterval
             ).onClosed {
                 pullRequest.configure(
                     token: githubToken,
                     query: githubQuery
                 )
-                pullRequest.update()
+
+                scheduleUpdate()
             }
         }
     }
