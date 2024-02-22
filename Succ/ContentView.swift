@@ -29,6 +29,7 @@ struct ContentView: View {
             } else {
                 List(pullRequest.nodes) { node in
                     HStack {
+                        Text(node.statusEmoji)
                         Link(destination: URL(string: node.url)!) {
                             Text(node.titleWithRepo)
                                 .multilineTextAlignment(.leading)

@@ -1,5 +1,6 @@
 import Apollo
 import Foundation
+import SwiftUI
 import UserNotifications
 
 extension PullRequest.Nodes {
@@ -22,6 +23,7 @@ class PullRequest: ObservableObject {
         let reviewDecision: String
         let state: String
         let commitUrl: String
+        let success: Bool
 
         var id: String {
             commitUrl
@@ -29,6 +31,10 @@ class PullRequest: ObservableObject {
 
         var titleWithRepo: String {
             "[\(owner)/\(repo)] \(title)"
+        }
+
+        var statusEmoji: String {
+            success ? "✅" : "❌"
         }
     }
 
@@ -102,7 +108,7 @@ class PullRequest: ObservableObject {
                     return
                 }
 
-                if state != .success {
+                if state != .success && state != .failure && state != .error {
                     return
                 }
 
@@ -113,7 +119,8 @@ class PullRequest: ObservableObject {
                     url: pull.url,
                     reviewDecision: pull.reviewDecision?.rawValue ?? "",
                     state: state.rawValue,
-                    commitUrl: commit.url
+                    commitUrl: commit.url,
+                    success: state == .success
                 )
 
                 fetchedNodes.append(node)
@@ -136,9 +143,10 @@ class PullRequest: ObservableObject {
 
             for node in newNodes {
                 let content = UNMutableNotificationContent()
-                content.title = node.titleWithRepo
+                content.title = node.statusEmoji + node.titleWithRepo
                 content.userInfo = ["url": node.url]
                 content.sound = UNNotificationSound.default
+
                 let req = UNNotificationRequest(identifier: "jp.winebarrel.Succ.\(node.id)", content: content, trigger: nil)
                 try? await userNotificationCenter.add(req)
             }
