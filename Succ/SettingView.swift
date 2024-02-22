@@ -43,7 +43,7 @@ struct SettingView: View {
             let appVer = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
             let buildVer = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
             // swiftlint:enable force_cast
-            Text("Ver. \(appVer).\(buildVer)")
+            Link("Ver. \(appVer).\(buildVer)", destination: URL(string: "https://github.com/winebarrel/Succ")!)
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }
         .padding(20)
