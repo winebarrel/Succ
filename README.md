@@ -18,6 +18,13 @@ Download from [releases page](https://github.com/winebarrel/Succ/releases/latest
 
 ![](https://github.com/winebarrel/Succ/assets/117768/e6b95b6f-2e5f-4f56-91fb-45141d868619)
 
+### Icons indicate status
+
+| Icon | Status |
+| - | - |
+| ![](https://github.com/winebarrel/Succ/assets/117768/cd43f586-3b04-4803-9093-1d45ba4bb173) | No pull requests |
+| ![](https://github.com/winebarrel/Succ/assets/117768/5a1d1f6e-0315-4500-8529-6ce2eaced785) | There is a pull request that has passed testing and been approved |
+
 ## Getting Started
 
 1. Create a personal access token from [here](https://github.com/settings/tokens/new).
