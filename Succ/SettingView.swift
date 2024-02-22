@@ -38,6 +38,13 @@ struct SettingView: View {
                         AppLogger.shared.debug("failed to update 'Launch at login': \(error)")
                     }
                 }
+
+            // swiftlint:disable force_cast
+            let appVer = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+            let buildVer = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
+            // swiftlint:enable force_cast
+            Text("Ver. \(appVer).\(buildVer)")
+                .frame(maxWidth: .infinity, alignment: .trailing)
         }
         .padding(20)
         .frame(width: 400)
