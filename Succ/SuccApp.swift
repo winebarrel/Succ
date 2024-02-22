@@ -10,7 +10,7 @@ struct SuccApp: App {
     @State private var githubToken = AppValet.githubToken
     @AppStorage("githubQuery") private var githubQuery = Constants.defaultGithubQuery
     @State private var timer: Timer?
-    @State private var timetInterval: TimeInterval = 60
+    @AppStorage("timerInterval") private var timerInterval: TimeInterval = Constants.defaultTimerInterval
 
     private var popover: NSPopover = {
         let pop = NSPopover()
@@ -42,7 +42,7 @@ struct SuccApp: App {
 
     func scheduleUpdate() {
         timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: timetInterval, repeats: true) { _ in
+        timer = Timer.scheduledTimer(withTimeInterval: timerInterval, repeats: true) { _ in
             pullRequest.update()
         }
         timer?.fire()
@@ -53,7 +53,11 @@ struct SuccApp: App {
         MenuBarExtra {
             RightClickMenu(pullRequest: pullRequest)
         } label: {
-            Image("menubaricon")
+            if pullRequest.nodes.isEmpty {
+                Image("checked.black")
+            } else {
+                Image("checked")
+            }
         }.menuBarExtraAccess(isPresented: $isMenuPresented) { statusItem in
             if !initialized {
                 initialize()
@@ -77,8 +81,7 @@ struct SuccApp: App {
         }
         Settings {
             SettingView(
-                githubToken: $githubToken,
-                timerInterval: $timetInterval
+                githubToken: $githubToken
             ).onClosed {
                 pullRequest.configure(
                     token: githubToken,
