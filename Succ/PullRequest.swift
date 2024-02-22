@@ -41,7 +41,7 @@ class PullRequest: ObservableObject {
     typealias Nodes = [Node]
 
     private var apollo: ApolloClient?
-    private var githubQuery = Constants.defaultGithubQuery
+    var githubQuery = Constants.defaultGithubQuery
 
     @Published var nodes: [Node] = []
     @Published var updatedAt = "-"
