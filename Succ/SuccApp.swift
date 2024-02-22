@@ -15,22 +15,27 @@ struct SuccApp: App {
         return pop
     }()
 
+    @State private var initialized = false
+
+    private func initialize() {
+        pullRequest.configure(
+            token: githubToken,
+            query: githubQuery
+        )
+
+        let view = ContentView(pullRequest: pullRequest)
+        popover.contentViewController = NSHostingController(rootView: view)
+    }
+
     var body: some Scene {
         MenuBarExtra {
             RightClickMenu(pullRequest: pullRequest)
         } label: {
             Image(systemName: "leaf")
         }.menuBarExtraAccess(isPresented: $isMenuPresented) { statusItem in
-            if !pullRequest.initialized {
-                pullRequest.configure(
-                    token: githubToken,
-                    query: githubQuery
-                )
-            }
-
-            if popover.contentViewController == nil {
-                let view = ContentView(pullRequest: pullRequest)
-                popover.contentViewController = NSHostingController(rootView: view)
+            if !initialized {
+                initialize()
+                initialized = true
             }
 
             if let button = statusItem.button {
