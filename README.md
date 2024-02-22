@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/winebarrel/Succ/actions/workflows/ci.yml/badge.svg)](https://github.com/winebarrel/Succ/actions/workflows/ci.yml)
 
-Succ is an app that notifies you of pull requests that have passed tests and been approved.
+**Succ** is an application that notifies the user of pull requests that have passed testing and have been approved, or pull requests that have failed testing.
 
 ## Installation
 
