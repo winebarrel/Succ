@@ -6,7 +6,7 @@ struct RightClickMenu: View {
     var body: some View {
         Button("Pull Requests") {
             Task {
-                let url = URL(string: "https://github.com/pulls")!
+                let url = URL(string: "https://github.com/pulls?q=" + (pullRequest.githubQuery.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""))!
                 NSWorkspace.shared.open(url)
             }
         }
