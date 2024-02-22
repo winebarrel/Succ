@@ -1,5 +1,6 @@
 import MenuBarExtraAccess
 import SwiftUI
+import UserNotifications
 
 @main
 struct SuccApp: App {
@@ -19,6 +20,15 @@ struct SuccApp: App {
     }()
 
     private func initialize() {
+        let userNotificationCenter = UNUserNotificationCenter.current()
+
+        userNotificationCenter.requestAuthorization(options: [.alert, .sound]) { authorized, _ in
+            guard authorized else {
+                AppLogger.shared.debug("user notificationCentern not authorized")
+                return
+            }
+        }
+
         pullRequest.configure(
             token: githubToken,
             query: githubQuery
@@ -38,6 +48,7 @@ struct SuccApp: App {
         timer?.fire()
     }
 
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
         MenuBarExtra {
             RightClickMenu(pullRequest: pullRequest)
@@ -77,5 +88,24 @@ struct SuccApp: App {
                 scheduleUpdate()
             }
         }
+    }
+}
+
+class AppDelegate: NSObject, NSApplicationDelegate {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
+        UNUserNotificationCenter.current().delegate = self
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+
+        guard let url = userInfo["url"] as? String else {
+            fatalError("failed to cast userInfo['url'] to String")
+        }
+
+        NSWorkspace.shared.open(URL(string: url)!)
+        completionHandler()
     }
 }
