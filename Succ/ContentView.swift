@@ -28,7 +28,7 @@ struct ContentView: View {
                 List(pullRequest.nodes) { node in
                     HStack {
                         Link(destination: URL(string: node.url)!) {
-                            Text("[\(node.owner)/\(node.repo)] \(node.title)")
+                            Text(node.titleWithRepo)
                                 .multilineTextAlignment(.leading)
                         }
                     }

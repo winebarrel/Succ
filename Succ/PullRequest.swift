@@ -1,10 +1,16 @@
 import Apollo
 import Foundation
+import UserNotifications
 
 extension PullRequest.Nodes {
     mutating func replaceAll(_ newNodes: PullRequest.Nodes) {
         replaceSubrange(0 ..< count, with: newNodes)
     }
+}
+
+func - (left: PullRequest.Nodes, right: PullRequest.Nodes) -> PullRequest.Nodes {
+    let rightIDs = right.map { $0.id }
+    return left.filter { !rightIDs.contains($0.id) }
 }
 
 class PullRequest: ObservableObject {
@@ -18,6 +24,10 @@ class PullRequest: ObservableObject {
 
         var id: String {
             url
+        }
+
+        var titleWithRepo: String {
+            "[\(owner)/\(repo)] \(title)"
         }
     }
 
@@ -75,7 +85,7 @@ class PullRequest: ObservableObject {
     }
 
     private func updateNodes(_ value: GraphQLResult<Github.SearchPullRequestsQuery.Data>) {
-        var newNodes: Nodes = []
+        var fetchedNodes: Nodes = []
 
         value.data?.search.nodes?.forEach { body in
             if let pull = body?.asPullRequest {
@@ -100,12 +110,33 @@ class PullRequest: ObservableObject {
                     state: state.rawValue
                 )
 
-                newNodes.append(node)
+                fetchedNodes.append(node)
             }
         }
 
-        nodes.replaceAll(newNodes)
+        let newNodes = fetchedNodes - nodes
+        nodes.replaceAll(fetchedNodes)
+
+        if newNodes.count > 0 {
+            notify(newNodes)
+        }
+
         updatedAt = dateFmt.string(from: Date())
+    }
+
+    private func notify(_ newNodes: Nodes) {
+        Task {
+            let userNotificationCenter = UNUserNotificationCenter.current()
+
+            for node in newNodes {
+                let content = UNMutableNotificationContent()
+                content.title = node.titleWithRepo
+                content.userInfo = ["url": node.url]
+                content.sound = UNNotificationSound.default
+                let req = UNNotificationRequest(identifier: "jp.winebarrel.Succ.\(node.id)", content: content, trigger: nil)
+                try? await userNotificationCenter.add(req)
+            }
+        }
     }
 
     func update(showError: Bool = false) {
