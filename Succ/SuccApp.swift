@@ -53,7 +53,7 @@ struct SuccApp: App {
         MenuBarExtra {
             RightClickMenu(pullRequest: pullRequest)
         } label: {
-            Image(systemName: "leaf")
+            Image("menubaricon")
         }.menuBarExtraAccess(isPresented: $isMenuPresented) { statusItem in
             if !initialized {
                 initialize()
