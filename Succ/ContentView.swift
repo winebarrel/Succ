@@ -7,12 +7,14 @@ struct ContentView: View {
     var body: some View {
         VStack {
             if !pullRequest.errorMessage.isEmpty {
-                HStack {
-                    Spacer()
-                    Image(systemName: "exclamationmark.triangle")
-                        .imageScale(.large)
-                    Text(pullRequest.errorMessage)
-                    Spacer()
+                List {
+                    HStack {
+                        Spacer()
+                        Image(systemName: "exclamationmark.triangle")
+                            .imageScale(.large)
+                        Text(pullRequest.errorMessage)
+                        Spacer()
+                    }
                 }
             } else if pullRequest.nodes.isEmpty {
                 List {
