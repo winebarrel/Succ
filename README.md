@@ -28,7 +28,7 @@ Download from [releases page](https://github.com/winebarrel/Succ/releases/latest
 ## Getting Started
 
 1. Create a personal access token from [here](https://github.com/settings/tokens/new).
-    * Scope selection is not required.
+    * Scope: `repo`
 2. Set token (from right click menu).
 
 ![](https://github.com/winebarrel/Succ/assets/117768/cf2b7a5e-4620-4934-9a85-3c517c48520f)
