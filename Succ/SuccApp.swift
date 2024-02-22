@@ -10,7 +10,7 @@ struct SuccApp: App {
     @State private var githubToken = AppValet.githubToken
     @AppStorage("githubQuery") private var githubQuery = Constants.defaultGithubQuery
     @State private var timer: Timer?
-    @State private var timetInterval: TimeInterval = 300
+    @State private var timetInterval: TimeInterval = 60
 
     private var popover: NSPopover = {
         let pop = NSPopover()

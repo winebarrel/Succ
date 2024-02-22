@@ -55,6 +55,6 @@ struct SettingView: View {
 #Preview {
     SettingView(
         githubToken: .constant(""),
-        timerInterval: .constant(300)
+        timerInterval: .constant(60)
     )
 }
