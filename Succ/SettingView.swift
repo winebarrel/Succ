@@ -5,7 +5,7 @@ struct SettingView: View {
     @Binding var githubToken: String
     @AppStorage("githubQuery") private var githubQuery = Constants.defaultGithubQuery
     @State private var launchAtLogin: Bool = SMAppService.mainApp.status == .enabled
-    @Binding var timerInterval: TimeInterval
+    @AppStorage("timerInterval") private var timerInterval: TimeInterval = Constants.defaultTimerInterval
 
     var body: some View {
         Form {
@@ -54,7 +54,6 @@ struct SettingView: View {
 
 #Preview {
     SettingView(
-        githubToken: .constant(""),
-        timerInterval: .constant(60)
+        githubToken: .constant("")
     )
 }
