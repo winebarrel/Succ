@@ -107,8 +107,8 @@ class PullRequest: ObservableObject {
                 }
 
                 let node = Node(
-                    owner: pull.repository.name,
-                    repo: pull.repository.owner.login,
+                    owner: pull.repository.owner.login,
+                    repo: pull.repository.name,
                     title: pull.title,
                     url: pull.url,
                     reviewDecision: pull.reviewDecision?.rawValue ?? "",
