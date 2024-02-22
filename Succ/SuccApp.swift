@@ -3,9 +3,10 @@ import SwiftUI
 
 @main
 struct SuccApp: App {
-    @State var isMenuPresented = false
-    @StateObject var pullRequest = PullRequest()
-    @State var githubToken = AppValet.githubToken
+    @State private var initialized = false
+    @State private var isMenuPresented = false
+    @StateObject private var pullRequest = PullRequest()
+    @State private var githubToken = AppValet.githubToken
     @AppStorage("githubQuery") private var githubQuery = Constants.defaultGithubQuery
 
     private var popover: NSPopover = {
@@ -14,8 +15,6 @@ struct SuccApp: App {
         pop.animates = false
         return pop
     }()
-
-    @State private var initialized = false
 
     private func initialize() {
         pullRequest.configure(
