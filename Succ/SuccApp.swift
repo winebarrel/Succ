@@ -55,8 +55,10 @@ struct SuccApp: App {
         } label: {
             if pullRequest.nodes.isEmpty {
                 Image("checked.black")
-            } else {
+            } else if pullRequest.nodes.allSatisfy({ $0.success }) {
                 Image("checked")
+            } else {
+                Image("checked.red")
             }
         }.menuBarExtraAccess(isPresented: $isMenuPresented) { statusItem in
             if !initialized {
