@@ -15,18 +15,26 @@ struct SettingView: View {
             HStack {
                 TextField("Query", text: $githubQuery, axis: .vertical)
                     .lineLimit(5...)
-                Link(destination: URL(string: "https://github.com/pulls?q=" + (githubQuery.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""))!) {
-                    Image(systemName: "magnifyingglass")
-                }
-            }
-            TextField("Interval (sec)", value: $timerInterval, format: .number.grouping(.never))
-                .onChange(of: timerInterval) {
-                    if timerInterval < 1 {
-                        timerInterval = 1
-                    } else if timerInterval > 3600 {
-                        timerInterval = 3600
+                VStack {
+                    Link(destination: URL(string: "https://github.com/pulls?q=" + (githubQuery.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""))!) {
+                        Image(systemName: "magnifyingglass")
+                    }
+                    Link(destination: URL(string: "https://docs.github.com/search-github/searching-on-github/searching-issues-and-pull-requests")!) {
+                        Image(systemName: "questionmark.circle")
                     }
                 }
+            }
+            HStack {
+                TextField("Interval", value: $timerInterval, format: .number.grouping(.never))
+                    .onChange(of: timerInterval) {
+                        if timerInterval < 1 {
+                            timerInterval = 1
+                        } else if timerInterval > 3600 {
+                            timerInterval = 3600
+                        }
+                    }
+                Text("sec")
+            }
             Toggle("Launch at login", isOn: $launchAtLogin)
                 .onChange(of: launchAtLogin) {
                     do {
