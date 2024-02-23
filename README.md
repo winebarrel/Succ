@@ -16,7 +16,7 @@ Download from [releases page](https://github.com/winebarrel/Succ/releases/latest
 
 ### Notifications
 
-![](https://github.com/winebarrel/Succ/assets/117768/2cc010bb-64b7-4557-8828-6ca3be9e303f)
+![](https://github.com/winebarrel/Succ/assets/117768/669a82ec-4089-4597-b5b4-87184480bf10)
 
 ### Icons indicate status
 
