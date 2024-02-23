@@ -33,4 +33,4 @@ Download from [releases page](https://github.com/winebarrel/Succ/releases/latest
 2. Set token (from right click menu).
 
 ![](https://github.com/winebarrel/Succ/assets/117768/2c133ee5-8929-471a-8975-3166f57165f3)
-![](https://github.com/winebarrel/Succ/assets/117768/dba0d4c6-09af-41a1-9efb-61a4addaa388)
+![](https://github.com/winebarrel/Succ/assets/117768/dfc12cc8-ca43-42ac-980b-9d7211faf44e)
