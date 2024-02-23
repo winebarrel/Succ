@@ -16,6 +16,12 @@ struct RightClickMenu: View {
                 NSWorkspace.shared.open(url)
             }
         }
+        Button("Notifications") {
+            Task {
+                let url = URL(string: "https://github.com/notifications")!
+                NSWorkspace.shared.open(url)
+            }
+        }
         Divider()
         Button("Update Manually") {
             pullRequest.update(showError: true)
