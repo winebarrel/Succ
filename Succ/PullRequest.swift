@@ -80,7 +80,7 @@ class PullRequest: ObservableObject {
         }
 
         switch err {
-        case .invalidResponseCode(let resp, _):
+        case let .invalidResponseCode(resp, _):
             if let resp {
                 let statusCode = resp.statusCode
                 let statusMsg = HTTPURLResponse.localizedString(forStatusCode: statusCode)
@@ -159,9 +159,9 @@ class PullRequest: ObservableObject {
 
         apollo?.fetch(query: query, cachePolicy: .fetchIgnoringCacheCompletely) { result in
             switch result {
-            case .success(let value):
+            case let .success(value):
                 self.updateNodes(value)
-            case .failure(let error):
+            case let .failure(error):
                 AppLogger.shared.debug("failed to search GitHub: \(error)")
 
                 if showError {

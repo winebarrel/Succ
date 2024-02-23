@@ -6,7 +6,7 @@ enum AppValet {
     static var githubToken: String {
         get {
             do {
-                return try self.shared.string(forKey: "githubToken")
+                return try shared.string(forKey: "githubToken")
             } catch KeychainError.itemNotFound {
                 // nothing to do
             } catch {
@@ -19,9 +19,9 @@ enum AppValet {
         set(token) {
             do {
                 if token.isEmpty {
-                    try self.shared.removeObject(forKey: "githubToken")
+                    try shared.removeObject(forKey: "githubToken")
                 } else {
-                    try self.shared.setString(token, forKey: "githubToken")
+                    try shared.setString(token, forKey: "githubToken")
                 }
             } catch {
                 AppLogger.shared.error("failed to set githubToken to Valet: \(error)")
