@@ -13,7 +13,8 @@ struct SettingView: View {
                 AppValet.githubToken = githubToken
             }
             HStack {
-                TextField("GitHub query", text: $githubQuery)
+                TextField("Query", text: $githubQuery, axis: .vertical)
+                    .lineLimit(5...)
                 Link(destination: URL(string: "https://github.com/pulls?q=" + (githubQuery.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""))!) {
                     Image(systemName: "magnifyingglass")
                 }
