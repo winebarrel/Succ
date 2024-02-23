@@ -22,7 +22,7 @@ Download from [releases page](https://github.com/winebarrel/Succ/releases/latest
 
 | Icon | Status |
 | - | - |
-| ![](https://github.com/winebarrel/Succ/assets/117768/cd43f586-3b04-4803-9093-1d45ba4bb173) | No pull requests |
+| ![](https://github.com/winebarrel/Succ/assets/117768/cd43f586-3b04-4803-9093-1d45ba4bb173) | No pull requests to notify |
 | ![](https://github.com/winebarrel/Succ/assets/117768/5a1d1f6e-0315-4500-8529-6ce2eaced785) | There is a pull request that has passed testing and been approved |
 | ![](https://github.com/winebarrel/Succ/assets/117768/8877594c-8e5d-4c37-b9af-db7f9b301c30) | There is a pull request that failed the test |
 
