@@ -34,6 +34,10 @@ struct ContentView: View {
                             Text(node.titleWithRepo)
                                 .multilineTextAlignment(.leading)
                         }
+                        .underline(hoverId == node.id)
+                        .onHover { hovering in
+                            hoverId = hovering ? node.id : ""
+                        }
                     }
                 }
             }
