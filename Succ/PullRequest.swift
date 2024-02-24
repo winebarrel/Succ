@@ -21,6 +21,7 @@ class PullRequest: ObservableObject {
         let title: String
         let url: String
         let reviewDecision: String
+        let mergeable: String
         let state: String
         let commitUrl: String
         let success: Bool
@@ -120,9 +121,12 @@ class PullRequest: ObservableObject {
                     title: pull.title,
                     url: pull.url,
                     reviewDecision: reviewDecision?.rawValue ?? "",
+                    mergeable: pull.mergeable.rawValue,
                     state: state.rawValue,
                     commitUrl: commit.url,
-                    success: (reviewDecision == nil || reviewDecision == .approved) && state == .success
+                    success: (reviewDecision == nil || reviewDecision == .approved)
+                        && (pull.mergeable != .conflicting)
+                        && state == .success
                 )
 
                 fetchedNodes.append(node)

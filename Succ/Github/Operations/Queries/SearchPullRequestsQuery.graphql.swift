@@ -8,7 +8,7 @@ extension Github {
     static let operationName: String = "SearchPullRequests"
     static let operationDocument: ApolloAPI.OperationDocument = .init(
       definition: .init(
-        #"query SearchPullRequests($query: String!) { search(type: ISSUE, last: 100, query: $query) { __typename nodes { __typename ... on PullRequest { repository { __typename name owner { __typename login } } title url reviewDecision commits(last: 1) { __typename nodes { __typename commit { __typename url statusCheckRollup { __typename state } } } } } } } }"#
+        #"query SearchPullRequests($query: String!) { search(type: ISSUE, last: 100, query: $query) { __typename nodes { __typename ... on PullRequest { repository { __typename name owner { __typename login } } title url reviewDecision mergeable commits(last: 1) { __typename nodes { __typename commit { __typename url statusCheckRollup { __typename state } } } } } } } }"#
       ))
 
     public var query: String
@@ -80,6 +80,7 @@ extension Github {
               .field("title", String.self),
               .field("url", Github.URI.self),
               .field("reviewDecision", GraphQLEnum<Github.PullRequestReviewDecision>?.self),
+              .field("mergeable", GraphQLEnum<Github.MergeableState>.self),
               .field("commits", Commits.self, arguments: ["last": 1]),
             ] }
 
@@ -91,6 +92,8 @@ extension Github {
             var url: Github.URI { __data["url"] }
             /// The current status of this pull request with respect to code review.
             var reviewDecision: GraphQLEnum<Github.PullRequestReviewDecision>? { __data["reviewDecision"] }
+            /// Whether or not the pull request can be merged based on the existence of merge conflicts.
+            var mergeable: GraphQLEnum<Github.MergeableState> { __data["mergeable"] }
             /// A list of commits present in this pull request's head branch not present in the base branch.
             var commits: Commits { __data["commits"] }
 
