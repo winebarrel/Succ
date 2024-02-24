@@ -96,7 +96,9 @@ class PullRequest: ObservableObject {
 
         value.data?.search.nodes?.forEach { body in
             if let pull = body?.asPullRequest {
-                if let reviewDecision = pull.reviewDecision, reviewDecision != .approved {
+                let reviewDecision = pull.reviewDecision
+
+                if reviewDecision != nil && reviewDecision != .approved && reviewDecision != .changesRequested {
                     return
                 }
 
@@ -117,10 +119,10 @@ class PullRequest: ObservableObject {
                     repo: pull.repository.name,
                     title: pull.title,
                     url: pull.url,
-                    reviewDecision: pull.reviewDecision?.rawValue ?? "",
+                    reviewDecision: reviewDecision?.rawValue ?? "",
                     state: state.rawValue,
                     commitUrl: commit.url,
-                    success: state == .success
+                    success: (reviewDecision == nil || reviewDecision == .approved) && state == .success
                 )
 
                 fetchedNodes.append(node)
