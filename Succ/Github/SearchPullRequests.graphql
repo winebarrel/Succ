@@ -11,6 +11,7 @@ query SearchPullRequests($query: String!) {
         title
         url
         reviewDecision
+        mergeable
         commits(last: 1) {
           nodes {
             commit {
