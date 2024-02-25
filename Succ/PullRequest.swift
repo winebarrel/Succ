@@ -20,9 +20,9 @@ class PullRequest: ObservableObject {
         let repo: String
         let title: String
         let url: String
-        let reviewDecision: String
+        let reviewDecision: String?
         let mergeable: String
-        let state: String
+        let state: String?
         let commitUrl: String
         let success: Bool
 
@@ -98,20 +98,34 @@ class PullRequest: ObservableObject {
         value.data?.search.nodes?.forEach { body in
             if let pull = body?.asPullRequest {
                 let reviewDecision = pull.reviewDecision
+                let reviewResult: Bool?
 
-                if reviewDecision != nil && reviewDecision != .approved && reviewDecision != .changesRequested {
-                    return
+                if reviewDecision == nil || reviewDecision == .approved {
+                    reviewResult = true
+                } else if reviewDecision == .changesRequested {
+                    reviewResult = false
+                } else {
+                    reviewResult = nil
                 }
 
                 guard let commit = pull.commits.nodes?.first??.commit else {
                     return
                 }
 
-                guard let state = commit.statusCheckRollup?.state else {
-                    return
+                let state = commit.statusCheckRollup?.state
+                let checkResult: Bool?
+
+                if state == .success {
+                    checkResult = true
+                } else if state == .failure || state == .error {
+                    checkResult = false
+                } else {
+                    checkResult = nil
                 }
 
-                if state != .success && state != .failure && state != .error {
+                if reviewResult == nil && checkResult == nil {
+                    return
+                } else if reviewResult == true && checkResult == nil || reviewResult == nil && checkResult == true {
                     return
                 }
 
@@ -120,13 +134,11 @@ class PullRequest: ObservableObject {
                     repo: pull.repository.name,
                     title: pull.title,
                     url: pull.url,
-                    reviewDecision: reviewDecision?.rawValue ?? "",
+                    reviewDecision: reviewDecision?.rawValue,
                     mergeable: pull.mergeable.rawValue,
-                    state: state.rawValue,
+                    state: state?.rawValue,
                     commitUrl: commit.url,
-                    success: (reviewDecision == nil || reviewDecision == .approved)
-                        && (pull.mergeable != .conflicting)
-                        && state == .success
+                    success: reviewResult == true && checkResult == true
                 )
 
                 fetchedNodes.append(node)
