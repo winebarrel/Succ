@@ -14,6 +14,18 @@ func - (left: PullRequest.Nodes, right: PullRequest.Nodes) -> PullRequest.Nodes 
     return left.filter { !rightIDs.contains($0.id) }
 }
 
+enum ReviewResult {
+    case success
+    case failure
+    case pending
+}
+
+enum CheckResult {
+    case success
+    case failure
+    case pending
+}
+
 class PullRequest: ObservableObject {
     struct Node: Identifiable {
         let owner: String
@@ -98,14 +110,14 @@ class PullRequest: ObservableObject {
         value.data?.search.nodes?.forEach { body in
             if let pull = body?.asPullRequest {
                 let reviewDecision = pull.reviewDecision
-                let reviewResult: Bool?
+                let reviewResult: ReviewResult
 
                 if reviewDecision == nil || reviewDecision == .approved {
-                    reviewResult = true
+                    reviewResult = .success
                 } else if reviewDecision == .changesRequested {
-                    reviewResult = false
+                    reviewResult = .failure
                 } else {
-                    reviewResult = nil
+                    reviewResult = .pending
                 }
 
                 guard let commit = pull.commits.nodes?.first??.commit else {
@@ -113,19 +125,19 @@ class PullRequest: ObservableObject {
                 }
 
                 let state = commit.statusCheckRollup?.state
-                let checkResult: Bool?
+                let checkResult: CheckResult
 
                 if state == .success {
-                    checkResult = true
+                    checkResult = .success
                 } else if state == .failure || state == .error {
-                    checkResult = false
+                    checkResult = .failure
                 } else {
-                    checkResult = nil
+                    checkResult = .pending
                 }
 
-                if reviewResult == nil && checkResult == nil {
+                if reviewResult == .pending && checkResult == .pending {
                     return
-                } else if reviewResult == true && checkResult == nil || reviewResult == nil && checkResult == true {
+                } else if reviewResult == .success && checkResult == .pending || reviewResult == .pending && checkResult == .success {
                     return
                 }
 
@@ -138,7 +150,7 @@ class PullRequest: ObservableObject {
                     mergeable: pull.mergeable.rawValue,
                     state: state?.rawValue,
                     commitUrl: commit.url,
-                    success: reviewResult == true && checkResult == true
+                    success: reviewResult == .success && checkResult == .success
                 )
 
                 fetchedNodes.append(node)
