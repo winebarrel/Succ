@@ -28,10 +28,12 @@ struct ContentView: View {
                 }
             } else {
                 List(pullRequest.nodes) { node in
-                    HStack {
-                        Text(node.statusEmoji)
+                    VStack(alignment: .leading) {
+                        Text(node.ownerRepo)
+                            .font(.caption2)
+                            .multilineTextAlignment(.leading)
                         Link(destination: URL(string: node.url)!) {
-                            Text(node.titleWithRepo)
+                            Text(node.statusEmoji + node.title)
                                 .multilineTextAlignment(.leading)
                         }
                         .underline(hoverId == node.id)
