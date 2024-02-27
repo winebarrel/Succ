@@ -42,8 +42,8 @@ class PullRequest: ObservableObject {
             commitUrl
         }
 
-        var titleWithRepo: String {
-            "[\(owner)/\(repo)] \(title)"
+        var ownerRepo: String {
+            "\(owner)/\(repo)"
         }
 
         var statusEmoji: String {
@@ -173,7 +173,8 @@ class PullRequest: ObservableObject {
 
             for node in newNodes {
                 let content = UNMutableNotificationContent()
-                content.title = node.statusEmoji + node.titleWithRepo
+                content.title = node.ownerRepo
+                content.body = node.statusEmoji + node.title
                 content.userInfo = ["url": node.url]
                 content.sound = UNNotificationSound.default
 
