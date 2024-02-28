@@ -2,7 +2,6 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var pullRequest: PullRequest
-    @State private var hoverId = ""
     @State private var selection = 1
 
     var body: some View {
