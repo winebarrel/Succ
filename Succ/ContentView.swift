@@ -1,22 +1,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    enum Tab: Hashable {
+        case settled
+        case pending
+    }
+
     @ObservedObject var pullRequest: PullRequest
-    @State private var selection = 1
+    @State private var selection = Tab.settled
 
     var body: some View {
         VStack {
             TabView(selection: $selection) {
-                SettledListView(
-                    pullRequest: pullRequest
-                )
-                .tabItem { Text("Settled (\(pullRequest.nodes.count))") }
-                .tag(1)
-                PendingListView(
-                    pullRequest: pullRequest
-                )
-                .tabItem { Text("Pending (\(pullRequest.pendingNodes.count))") }
-                .tag(2)
+                SettledListView(pullRequest: pullRequest)
+                    .tabItem {
+                        Text("Settled (\(pullRequest.nodes.count))")
+                    }
+                    .tag(Tab.settled)
+                PendingListView(pullRequest: pullRequest)
+                    .tabItem {
+                        Text("Pending (\(pullRequest.pendingNodes.count))")
+                    }
+                    .tag(Tab.pending)
             }
             .padding(.top, 5)
             HStack {
