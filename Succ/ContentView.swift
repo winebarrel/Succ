@@ -11,12 +11,12 @@ struct ContentView: View {
                 SettledListView(
                     pullRequest: pullRequest
                 )
-                .tabItem { Text("Settled") }
+                .tabItem { Text("Settled (\(pullRequest.nodes.count))") }
                 .tag(1)
                 PendingListView(
                     pullRequest: pullRequest
                 )
-                .tabItem { Text("Pending") }
+                .tabItem { Text("Pending (\(pullRequest.pendingNodes.count))") }
                 .tag(2)
             }
             .background(.white)
