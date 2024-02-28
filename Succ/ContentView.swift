@@ -19,14 +19,14 @@ struct ContentView: View {
                 .tabItem { Text("Pending (\(pullRequest.pendingNodes.count))") }
                 .tag(2)
             }
-            .background(.white)
             .padding(.top, 5)
             HStack {
                 Image(systemName: "clock.arrow.circlepath")
                 Text(pullRequest.updatedAt)
             }
             .padding(.bottom, 5)
-        }.background(.background)
+        }
+        .background(.background)
     }
 }
 
