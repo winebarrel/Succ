@@ -2,47 +2,25 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var pullRequest: PullRequest
-    @State private var hoverId: String = ""
+    @State private var hoverId = ""
+    @State private var selection = 1
 
     var body: some View {
         VStack {
-            if !pullRequest.errorMessage.isEmpty {
-                List {
-                    HStack {
-                        Spacer()
-                        Image(systemName: "exclamationmark.triangle")
-                            .imageScale(.large)
-                        Text(pullRequest.errorMessage)
-                        Spacer()
-                    }
-                }
-            } else if pullRequest.nodes.isEmpty {
-                List {
-                    HStack {
-                        Spacer()
-                        Image(systemName: "rectangle.portrait.on.rectangle.portrait.slash")
-                            .imageScale(.large)
-                        Text("No pull requests")
-                        Spacer()
-                    }
-                }
-            } else {
-                List(pullRequest.nodes) { node in
-                    VStack(alignment: .leading) {
-                        Text(node.ownerRepo)
-                            .font(.caption2)
-                            .multilineTextAlignment(.leading)
-                        Link(destination: URL(string: node.url)!) {
-                            Text(node.statusEmoji + node.title)
-                                .multilineTextAlignment(.leading)
-                        }
-                        .underline(hoverId == node.id)
-                        .onHover { hovering in
-                            hoverId = hovering ? node.id : ""
-                        }
-                    }
-                }
+            TabView(selection: $selection) {
+                SettledListView(
+                    pullRequest: pullRequest
+                )
+                .tabItem { Text("Settled") }
+                .tag(1)
+                PendingListView(
+                    pullRequest: pullRequest
+                )
+                .tabItem { Text("Pending") }
+                .tag(2)
             }
+            .background(.white)
+            .padding(.top, 5)
             HStack {
                 Image(systemName: "clock.arrow.circlepath")
                 Text(pullRequest.updatedAt)

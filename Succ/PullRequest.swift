@@ -57,6 +57,7 @@ class PullRequest: ObservableObject {
     var githubQuery = Constants.defaultGithubQuery
 
     @Published var nodes: [Node] = []
+    @Published var pendingNodes: [Node] = []
     @Published var updatedAt = "-"
     @Published var errorMessage: String = ""
 
@@ -106,6 +107,7 @@ class PullRequest: ObservableObject {
 
     private func updateNodes(_ value: GraphQLResult<Github.SearchPullRequestsQuery.Data>) {
         var fetchedNodes: Nodes = []
+        var fetchedPendingNodes: Nodes = []
 
         value.data?.search.nodes?.forEach { body in
             if let pull = body?.asPullRequest {
@@ -135,12 +137,6 @@ class PullRequest: ObservableObject {
                     checkResult = .pending
                 }
 
-                if reviewResult == .pending && checkResult == .pending {
-                    return
-                } else if reviewResult == .success && checkResult == .pending || reviewResult == .pending && checkResult == .success {
-                    return
-                }
-
                 let node = Node(
                     owner: pull.repository.owner.login,
                     repo: pull.repository.name,
@@ -153,12 +149,19 @@ class PullRequest: ObservableObject {
                     success: reviewResult == .success && checkResult == .success
                 )
 
-                fetchedNodes.append(node)
+                if reviewResult == .pending && checkResult == .pending {
+                    fetchedPendingNodes.append(node)
+                } else if reviewResult == .success && checkResult == .pending || reviewResult == .pending && checkResult == .success {
+                    fetchedPendingNodes.append(node)
+                } else {
+                    fetchedNodes.append(node)
+                }
             }
         }
 
         let newNodes = fetchedNodes - nodes
         nodes.replaceAll(fetchedNodes)
+        pendingNodes.replaceAll(fetchedPendingNodes)
 
         if newNodes.count > 0 {
             notify(newNodes)
