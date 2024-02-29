@@ -277,6 +277,7 @@ extension Github {
       case "UserList": return Github.Objects.UserList
       case "UserStatus": return Github.Objects.UserStatus
       case "VerifiableDomain": return Github.Objects.VerifiableDomain
+      case "IssueCommentConnection": return Github.Objects.IssueCommentConnection
       case "PullRequestCommitConnection": return Github.Objects.PullRequestCommitConnection
       default: return nil
       }

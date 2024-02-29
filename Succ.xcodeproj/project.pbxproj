@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AD22F6652B8ED28E00F49E7E /* SettledListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD22F6642B8ED28E00F49E7E /* SettledListView.swift */; };
-		AD22F6672B8ED53800F49E7E /* PendingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD22F6662B8ED53800F49E7E /* PendingListView.swift */; };
+		AD22F6652B8ED28E00F49E7E /* PullRequestListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD22F6642B8ED28E00F49E7E /* PullRequestListView.swift */; };
+		AD5745812B900E2E00CD3A04 /* IssueCommentConnection.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5745802B900E2E00CD3A04 /* IssueCommentConnection.graphql.swift */; };
+		AD5745832B9014F000CD3A04 /* HiddenModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5745822B9014F000CD3A04 /* HiddenModifier.swift */; };
 		AD7403CE2B85823600E15C18 /* SuccApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7403CD2B85823600E15C18 /* SuccApp.swift */; };
 		AD7403D02B85823600E15C18 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7403CF2B85823600E15C18 /* ContentView.swift */; };
 		AD7403D22B85823700E15C18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD7403D12B85823700E15C18 /* Assets.xcassets */; };
@@ -326,8 +327,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AD22F6642B8ED28E00F49E7E /* SettledListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettledListView.swift; sourceTree = "<group>"; };
-		AD22F6662B8ED53800F49E7E /* PendingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingListView.swift; sourceTree = "<group>"; };
+		AD22F6642B8ED28E00F49E7E /* PullRequestListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRequestListView.swift; sourceTree = "<group>"; };
+		AD5745802B900E2E00CD3A04 /* IssueCommentConnection.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueCommentConnection.graphql.swift; sourceTree = "<group>"; };
+		AD5745822B9014F000CD3A04 /* HiddenModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenModifier.swift; sourceTree = "<group>"; };
 		AD7403CA2B85823600E15C18 /* Succ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Succ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD7403CD2B85823600E15C18 /* SuccApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccApp.swift; sourceTree = "<group>"; };
 		AD7403CF2B85823600E15C18 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -681,12 +683,12 @@
 				ADC115512B85A3CB0055E823 /* AppValet.swift */,
 				ADDF3E9C2B85C5BE0050F540 /* Constants.swift */,
 				AD7403CF2B85823600E15C18 /* ContentView.swift */,
+				AD5745822B9014F000CD3A04 /* HiddenModifier.swift */,
 				ADC115532B85A9BD0055E823 /* MouseHandlerView.swift */,
-				AD22F6662B8ED53800F49E7E /* PendingListView.swift */,
 				ADDF3E9E2B85C8870050F540 /* PullRequest.swift */,
+				AD22F6642B8ED28E00F49E7E /* PullRequestListView.swift */,
 				ADC1154D2B859E900055E823 /* RightClickMenu.swift */,
 				ADC115552B85ACFD0055E823 /* SettingView.swift */,
-				AD22F6642B8ED28E00F49E7E /* SettledListView.swift */,
 				AD7403CD2B85823600E15C18 /* SuccApp.swift */,
 				AD7403D12B85823700E15C18 /* Assets.xcassets */,
 				ADD9F2262B89E47500D7DA87 /* Github */,
@@ -774,6 +776,7 @@
 		ADD9F2362B89E47500D7DA87 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				AD5745802B900E2E00CD3A04 /* IssueCommentConnection.graphql.swift */,
 				ADD9F2372B89E47500D7DA87 /* MarketplaceListing.graphql.swift */,
 				ADD9F2382B89E47500D7DA87 /* CWE.graphql.swift */,
 				ADD9F2392B89E47500D7DA87 /* UnlockedEvent.graphql.swift */,
@@ -1253,7 +1256,6 @@
 				ADD9F4592B89E47500D7DA87 /* RepoConfigLockAnonymousGitAccessAuditEntry.graphql.swift in Sources */,
 				ADD9F3CB2B89E47500D7DA87 /* ReferencedEvent.graphql.swift in Sources */,
 				ADD9F3752B89E47500D7DA87 /* DiscussionPoll.graphql.swift in Sources */,
-				AD22F6672B8ED53800F49E7E /* PendingListView.swift in Sources */,
 				ADD9F4322B89E47500D7DA87 /* WorkflowRunFile.graphql.swift in Sources */,
 				ADD9F4662B89E47500D7DA87 /* Sponsorable.graphql.swift in Sources */,
 				ADD9F3672B89E47500D7DA87 /* AutoMergeDisabledEvent.graphql.swift in Sources */,
@@ -1265,6 +1267,7 @@
 				ADD9F3F22B89E47500D7DA87 /* TeamDiscussion.graphql.swift in Sources */,
 				ADD9F3652B89E47500D7DA87 /* CWE.graphql.swift in Sources */,
 				ADD9F3C72B89E47500D7DA87 /* DeploymentEnvironmentChangedEvent.graphql.swift in Sources */,
+				AD5745812B900E2E00CD3A04 /* IssueCommentConnection.graphql.swift in Sources */,
 				ADD9F38D2B89E47500D7DA87 /* RepoConfigEnableCollaboratorsOnlyAuditEntry.graphql.swift in Sources */,
 				ADD9F3DC2B89E47500D7DA87 /* RepoCreateAuditEntry.graphql.swift in Sources */,
 				ADD9F3682B89E47500D7DA87 /* MarkedAsDuplicateEvent.graphql.swift in Sources */,
@@ -1329,6 +1332,7 @@
 				ADD9F4532B89E47500D7DA87 /* ReadyForReviewEvent.graphql.swift in Sources */,
 				ADD9F41C2B89E47500D7DA87 /* LabeledEvent.graphql.swift in Sources */,
 				ADD9F3BA2B89E47500D7DA87 /* ReopenedEvent.graphql.swift in Sources */,
+				AD5745832B9014F000CD3A04 /* HiddenModifier.swift in Sources */,
 				ADD9F41D2B89E47500D7DA87 /* SponsorsListing.graphql.swift in Sources */,
 				ADD9F3A72B89E47500D7DA87 /* SponsorsTier.graphql.swift in Sources */,
 				ADD9F37F2B89E47500D7DA87 /* DiscussionComment.graphql.swift in Sources */,
@@ -1468,7 +1472,7 @@
 				ADD9F3B82B89E47500D7DA87 /* ReviewRequestRemovedEvent.graphql.swift in Sources */,
 				ADD9F4692B89E47500D7DA87 /* ProjectOwner.graphql.swift in Sources */,
 				ADD9F4312B89E47500D7DA87 /* AddedToProjectEvent.graphql.swift in Sources */,
-				AD22F6652B8ED28E00F49E7E /* SettledListView.swift in Sources */,
+				AD22F6652B8ED28E00F49E7E /* PullRequestListView.swift in Sources */,
 				ADD9F4252B89E47500D7DA87 /* BypassForcePushAllowance.graphql.swift in Sources */,
 				ADD9F4222B89E47500D7DA87 /* MemberFeatureRequestNotification.graphql.swift in Sources */,
 				ADD9F4172B89E47500D7DA87 /* SecurityAdvisory.graphql.swift in Sources */,
@@ -1634,7 +1638,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 6.1;
+				MARKETING_VERSION = 7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = jp.winebarrel.Succ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1664,7 +1668,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 6.1;
+				MARKETING_VERSION = 7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = jp.winebarrel.Succ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
