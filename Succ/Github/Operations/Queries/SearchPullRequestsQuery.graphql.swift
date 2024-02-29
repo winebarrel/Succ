@@ -8,7 +8,7 @@ extension Github {
     static let operationName: String = "SearchPullRequests"
     static let operationDocument: ApolloAPI.OperationDocument = .init(
       definition: .init(
-        #"query SearchPullRequests($query: String!) { search(type: ISSUE, last: 100, query: $query) { __typename nodes { __typename ... on PullRequest { repository { __typename name owner { __typename login } } title url reviewDecision mergeable comments(last: 1) { __typename nodes { __typename bodyText } } commits(last: 1) { __typename nodes { __typename commit { __typename url statusCheckRollup { __typename state } } } } } } } }"#
+        #"query SearchPullRequests($query: String!) { search(type: ISSUE, last: 100, query: $query) { __typename nodes { __typename ... on PullRequest { repository { __typename name owner { __typename login } } title url reviewDecision mergeable comments(last: 1) { __typename nodes { __typename author { __typename login } bodyText } } commits(last: 1) { __typename nodes { __typename commit { __typename url statusCheckRollup { __typename state } } } } } } } }"#
       ))
 
     public var query: String
@@ -163,11 +163,31 @@ extension Github {
                 static var __parentType: ApolloAPI.ParentType { Github.Objects.IssueComment }
                 static var __selections: [ApolloAPI.Selection] { [
                   .field("__typename", String.self),
+                  .field("author", Author?.self),
                   .field("bodyText", String.self),
                 ] }
 
+                /// The actor who authored the comment.
+                var author: Author? { __data["author"] }
                 /// The body rendered to text.
                 var bodyText: String { __data["bodyText"] }
+
+                /// Search.Node.AsPullRequest.Comments.Node.Author
+                ///
+                /// Parent Type: `Actor`
+                struct Author: Github.SelectionSet {
+                  let __data: DataDict
+                  init(_dataDict: DataDict) { __data = _dataDict }
+
+                  static var __parentType: ApolloAPI.ParentType { Github.Interfaces.Actor }
+                  static var __selections: [ApolloAPI.Selection] { [
+                    .field("__typename", String.self),
+                    .field("login", String.self),
+                  ] }
+
+                  /// The username of the actor.
+                  var login: String { __data["login"] }
+                }
               }
             }
 

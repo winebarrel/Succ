@@ -38,6 +38,7 @@ class PullRequest: ObservableObject {
         let commitUrl: String
         let success: Bool
         let comment: String?
+        let commentAuthor: String?
 
         var id: String {
             commitUrl
@@ -148,7 +149,8 @@ class PullRequest: ObservableObject {
                     state: state?.rawValue,
                     commitUrl: commit.url,
                     success: reviewResult == .success && checkResult == .success,
-                    comment: pull.comments.nodes?.first??.bodyText
+                    comment: pull.comments.nodes?.first??.bodyText,
+                    commentAuthor: pull.comments.nodes?.first??.author?.login
                 )
 
                 if reviewResult == .pending && checkResult == .pending {

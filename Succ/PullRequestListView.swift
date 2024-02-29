@@ -35,7 +35,17 @@ struct PullRequestListView: View {
                     Text(node.ownerRepo)
                         .font(.caption2)
                         .multilineTextAlignment(.leading)
-                    let commentText = Text(node.comment ?? "")
+
+                    let comment = if let cmt = node.comment,
+                                     let author = node.commentAuthor
+                    {
+                        "@\(author)\n\(cmt)"
+                    } else {
+                        ""
+                    }
+
+                    let commentText = Text(comment)
+
                     HStack {
                         Link(destination: URL(string: node.url)!) {
                             let label = pendingList ? node.title : node.statusEmoji + node.title
