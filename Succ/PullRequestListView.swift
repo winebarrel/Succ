@@ -61,8 +61,6 @@ struct PullRequestListView: View {
                     if node.comment != nil {
                         commentText
                             .font(.footnote)
-                            .foregroundStyle(.gray)
-                            .brightness(0.1)
                             .hidden(commentId != node.id)
                     }
                 }
