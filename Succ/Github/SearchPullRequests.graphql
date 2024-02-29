@@ -12,6 +12,11 @@ query SearchPullRequests($query: String!) {
         url
         reviewDecision
         mergeable
+        comments(last: 1) {
+          nodes {
+            bodyText
+          }
+        }
         commits(last: 1) {
           nodes {
             commit {

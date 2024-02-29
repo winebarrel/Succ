@@ -37,6 +37,7 @@ class PullRequest: ObservableObject {
         let state: String?
         let commitUrl: String
         let success: Bool
+        let comment: String?
 
         var id: String {
             commitUrl
@@ -146,7 +147,8 @@ class PullRequest: ObservableObject {
                     mergeable: pull.mergeable.rawValue,
                     state: state?.rawValue,
                     commitUrl: commit.url,
-                    success: reviewResult == .success && checkResult == .success
+                    success: reviewResult == .success && checkResult == .success,
+                    comment: pull.comments.nodes?.first??.bodyText
                 )
 
                 if reviewResult == .pending && checkResult == .pending {

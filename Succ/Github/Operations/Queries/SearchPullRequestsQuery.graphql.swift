@@ -8,7 +8,7 @@ extension Github {
     static let operationName: String = "SearchPullRequests"
     static let operationDocument: ApolloAPI.OperationDocument = .init(
       definition: .init(
-        #"query SearchPullRequests($query: String!) { search(type: ISSUE, last: 100, query: $query) { __typename nodes { __typename ... on PullRequest { repository { __typename name owner { __typename login } } title url reviewDecision mergeable commits(last: 1) { __typename nodes { __typename commit { __typename url statusCheckRollup { __typename state } } } } } } } }"#
+        #"query SearchPullRequests($query: String!) { search(type: ISSUE, last: 100, query: $query) { __typename nodes { __typename ... on PullRequest { repository { __typename name owner { __typename login } } title url reviewDecision mergeable comments(last: 1) { __typename nodes { __typename bodyText } } commits(last: 1) { __typename nodes { __typename commit { __typename url statusCheckRollup { __typename state } } } } } } } }"#
       ))
 
     public var query: String
@@ -81,6 +81,7 @@ extension Github {
               .field("url", Github.URI.self),
               .field("reviewDecision", GraphQLEnum<Github.PullRequestReviewDecision>?.self),
               .field("mergeable", GraphQLEnum<Github.MergeableState>.self),
+              .field("comments", Comments.self, arguments: ["last": 1]),
               .field("commits", Commits.self, arguments: ["last": 1]),
             ] }
 
@@ -94,6 +95,8 @@ extension Github {
             var reviewDecision: GraphQLEnum<Github.PullRequestReviewDecision>? { __data["reviewDecision"] }
             /// Whether or not the pull request can be merged based on the existence of merge conflicts.
             var mergeable: GraphQLEnum<Github.MergeableState> { __data["mergeable"] }
+            /// A list of comments associated with the pull request.
+            var comments: Comments { __data["comments"] }
             /// A list of commits present in this pull request's head branch not present in the base branch.
             var commits: Commits { __data["commits"] }
 
@@ -131,6 +134,40 @@ extension Github {
 
                 /// The username used to login.
                 var login: String { __data["login"] }
+              }
+            }
+
+            /// Search.Node.AsPullRequest.Comments
+            ///
+            /// Parent Type: `IssueCommentConnection`
+            struct Comments: Github.SelectionSet {
+              let __data: DataDict
+              init(_dataDict: DataDict) { __data = _dataDict }
+
+              static var __parentType: ApolloAPI.ParentType { Github.Objects.IssueCommentConnection }
+              static var __selections: [ApolloAPI.Selection] { [
+                .field("__typename", String.self),
+                .field("nodes", [Node?]?.self),
+              ] }
+
+              /// A list of nodes.
+              var nodes: [Node?]? { __data["nodes"] }
+
+              /// Search.Node.AsPullRequest.Comments.Node
+              ///
+              /// Parent Type: `IssueComment`
+              struct Node: Github.SelectionSet {
+                let __data: DataDict
+                init(_dataDict: DataDict) { __data = _dataDict }
+
+                static var __parentType: ApolloAPI.ParentType { Github.Objects.IssueComment }
+                static var __selections: [ApolloAPI.Selection] { [
+                  .field("__typename", String.self),
+                  .field("bodyText", String.self),
+                ] }
+
+                /// The body rendered to text.
+                var bodyText: String { __data["bodyText"] }
               }
             }
 

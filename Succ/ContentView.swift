@@ -12,12 +12,12 @@ struct ContentView: View {
     var body: some View {
         VStack {
             TabView(selection: $selection) {
-                SettledListView(pullRequest: pullRequest)
+                PullRequestListView(pullRequest: pullRequest, pendingList: false)
                     .tabItem {
                         Text("Settled (\(pullRequest.nodes.count))")
                     }
                     .tag(Tab.settled)
-                PendingListView(pullRequest: pullRequest)
+                PullRequestListView(pullRequest: pullRequest, pendingList: true)
                     .tabItem {
                         Text("Pending (\(pullRequest.pendingNodes.count))")
                     }
