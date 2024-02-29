@@ -36,9 +36,7 @@ struct PullRequestListView: View {
                         .font(.caption2)
                         .multilineTextAlignment(.leading)
 
-                    let comment = if let cmt = node.comment,
-                                     let author = node.commentAuthor
-                    {
+                    let comment = if let cmt = node.comment, let author = node.commentAuthor {
                         "@\(author)\n\(cmt)"
                     } else {
                         ""
