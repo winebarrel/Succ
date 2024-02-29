@@ -12,8 +12,12 @@ Download from [releases page](https://github.com/winebarrel/Succ/releases/latest
 
 ### Show pull requests
 
-![](https://github.com/winebarrel/Succ/assets/117768/4ea547df-8b46-41ed-a1c6-59823c209863)
+![](https://github.com/winebarrel/Succ/assets/117768/0159a2ff-bc1a-403d-89c2-a5b029caf5e9)
 ![](https://github.com/winebarrel/Succ/assets/117768/f98911e1-9625-4a82-b35d-a1a26b62f96e)
+
+### Show a latest comment
+
+![](https://github.com/winebarrel/Succ/assets/117768/91399927-274b-4c3e-a1c7-f33538a695cc)
 
 ### Notifications
 
