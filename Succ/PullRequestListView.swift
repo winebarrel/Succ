@@ -35,39 +35,32 @@ struct PullRequestListView: View {
                     Text(node.ownerRepo)
                         .font(.caption2)
                         .multilineTextAlignment(.leading)
-
-                    let comment = if let cmt = node.comment, let author = node.commentAuthor {
-                        "@\(author)\n\(cmt)"
-                    } else {
-                        ""
+                    Link(destination: URL(string: node.url)!) {
+                        let label = pendingList ? node.title : node.statusEmoji + node.title
+                        Text(label)
+                            .multilineTextAlignment(.leading)
                     }
+                    .underline(hoverId == node.id)
+                    .onHover { hovering in
+                        hoverId = hovering ? node.id : ""
+                    }
+                    if let comment = node.comment, let author = node.commentAuthor {
+                        let commentText = Text(comment)
 
-                    let commentText = Text(comment)
-
-                    HStack {
-                        Link(destination: URL(string: node.url)!) {
-                            let label = pendingList ? node.title : node.statusEmoji + node.title
-                            Text(label)
-                                .multilineTextAlignment(.leading)
-                        }
-                        .underline(hoverId == node.id)
-                        .onHover { hovering in
-                            hoverId = hovering ? node.id : ""
-                        }
-                        if node.comment != nil {
-                            Button {
-                                if commentId != node.id {
-                                    commentId = node.id
-                                } else {
-                                    commentId = ""
-                                }
-                            } label: {
-                                Image(systemName: commentId != node.id ? "bubble" : "bubble.fill")
+                        Button {
+                            if commentId != node.id {
+                                commentId = node.id
+                            } else {
+                                commentId = ""
                             }
-                            .buttonStyle(.plain)
+                        } label: {
+                            HStack(spacing: 0) {
+                                Image(systemName: commentId != node.id ? "bubble" : "bubble.fill")
+                                Text("@\(author)")
+                                    .font(.footnote)
+                            }
                         }
-                    }
-                    if node.comment != nil {
+                        .buttonStyle(.plain)
                         commentText
                             .font(.footnote)
                             .hidden(commentId != node.id)
