@@ -56,14 +56,15 @@ struct PullRequestListView: View {
                         }
                         if node.comment != nil {
                             Button {
-                                if commentId.isEmpty {
+                                if commentId != node.id {
                                     commentId = node.id
                                 } else {
                                     commentId = ""
                                 }
                             } label: {
-                                Image(systemName: "bubble")
+                                Image(systemName: commentId != node.id ? "bubble" : "bubble.fill")
                             }
+                            .buttonStyle(.plain)
                         }
                     }
                     if node.comment != nil {
