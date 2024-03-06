@@ -36,6 +36,13 @@ struct PullRequestListView: View {
                         .font(.caption2)
                         .multilineTextAlignment(.leading)
                     Link(destination: URL(string: node.url)!) {
+                        if node.draft {
+                            Text("Draft")
+                                .font(.caption)
+                                .padding(.horizontal, 3)
+                                .foregroundColor(.white)
+                                .background(.gray, in: RoundedRectangle(cornerRadius: 5))
+                        }
                         let label = pendingList ? node.title : node.statusEmoji + node.title
                         Text(label)
                             .multilineTextAlignment(.leading)

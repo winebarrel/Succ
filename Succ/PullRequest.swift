@@ -39,6 +39,7 @@ class PullRequest: ObservableObject {
         let success: Bool
         let comment: String?
         let commentAuthor: String?
+        let draft: Bool
 
         var id: String {
             commitUrl
@@ -150,10 +151,13 @@ class PullRequest: ObservableObject {
                     commitUrl: commit.url,
                     success: reviewResult == .success && checkResult == .success,
                     comment: pull.comments.nodes?.first??.bodyText,
-                    commentAuthor: pull.comments.nodes?.first??.author?.login
+                    commentAuthor: pull.comments.nodes?.first??.author?.login,
+                    draft: pull.isDraft
                 )
 
-                if reviewResult == .pending && checkResult == .pending {
+                if pull.isDraft {
+                    fetchedPendingNodes.append(node)
+                } else if reviewResult == .pending && checkResult == .pending {
                     fetchedPendingNodes.append(node)
                 } else if reviewResult == .success && checkResult == .pending || reviewResult == .pending && checkResult == .success {
                     fetchedPendingNodes.append(node)
