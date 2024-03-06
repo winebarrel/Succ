@@ -12,6 +12,7 @@ query SearchPullRequests($query: String!) {
         url
         reviewDecision
         mergeable
+        isDraft
         comments(last: 1) {
           nodes {
             author {
