@@ -70,6 +70,7 @@ struct PullRequestListView: View {
                         .buttonStyle(.plain)
                         commentText
                             .font(.footnote)
+                            .textSelection(.enabled)
                             .hidden(commentId != node.id)
                     }
                 }
