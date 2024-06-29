@@ -312,6 +312,7 @@
 		AD8BC0362C3024E400AEC173 /* SearchResultItem.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8BBF0A2C3024E400AEC173 /* SearchResultItem.graphql.swift */; };
 		AD8BC0372C3024E400AEC173 /* SchemaConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8BBF0C2C3024E400AEC173 /* SchemaConfiguration.swift */; };
 		AD8BC0382C3024E400AEC173 /* SchemaMetadata.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8BBF0D2C3024E400AEC173 /* SchemaMetadata.graphql.swift */; };
+		AD8BC03A2C30356D00AEC173 /* PreActionButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8BC0392C30356D00AEC173 /* PreActionButtonStyle.swift */; };
 		ADC115462B8587430055E823 /* MenuBarExtraAccess in Frameworks */ = {isa = PBXBuildFile; productRef = ADC115452B8587430055E823 /* MenuBarExtraAccess */; };
 		ADC115492B8587570055E823 /* Valet in Frameworks */ = {isa = PBXBuildFile; productRef = ADC115482B8587570055E823 /* Valet */; };
 		ADC1154C2B85877D0055E823 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = ADC1154B2B85877D0055E823 /* Apollo */; };
@@ -635,6 +636,7 @@
 		AD8BBF0A2C3024E400AEC173 /* SearchResultItem.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultItem.graphql.swift; sourceTree = "<group>"; };
 		AD8BBF0C2C3024E400AEC173 /* SchemaConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchemaConfiguration.swift; sourceTree = "<group>"; };
 		AD8BBF0D2C3024E400AEC173 /* SchemaMetadata.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchemaMetadata.graphql.swift; sourceTree = "<group>"; };
+		AD8BC0392C30356D00AEC173 /* PreActionButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreActionButtonStyle.swift; sourceTree = "<group>"; };
 		ADC1154D2B859E900055E823 /* RightClickMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightClickMenu.swift; sourceTree = "<group>"; };
 		ADC1154F2B85A3870055E823 /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
 		ADC115512B85A3CB0055E823 /* AppValet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppValet.swift; sourceTree = "<group>"; };
@@ -687,6 +689,7 @@
 				AD7403CF2B85823600E15C18 /* ContentView.swift */,
 				AD5745822B9014F000CD3A04 /* HiddenModifier.swift */,
 				ADC115532B85A9BD0055E823 /* MouseHandlerView.swift */,
+				AD8BC0392C30356D00AEC173 /* PreActionButtonStyle.swift */,
 				ADDF3E9E2B85C8870050F540 /* PullRequest.swift */,
 				AD22F6642B8ED28E00F49E7E /* PullRequestListView.swift */,
 				ADC1154D2B859E900055E823 /* RightClickMenu.swift */,
@@ -1224,6 +1227,7 @@
 				AD8BBFE52C3024E400AEC173 /* ReferencedEvent.graphql.swift in Sources */,
 				AD8BBFFF2C3024E400AEC173 /* Repository.graphql.swift in Sources */,
 				AD8BBFFA2C3024E400AEC173 /* RepoConfigUnlockAnonymousGitAccessAuditEntry.graphql.swift in Sources */,
+				AD8BC03A2C30356D00AEC173 /* PreActionButtonStyle.swift in Sources */,
 				AD8BBF3B2C3024E400AEC173 /* UpdatableComment.graphql.swift in Sources */,
 				AD8BBF9E2C3024E400AEC173 /* OrganizationInvitation.graphql.swift in Sources */,
 				AD8BBFC82C3024E400AEC173 /* ProjectColumn.graphql.swift in Sources */,
