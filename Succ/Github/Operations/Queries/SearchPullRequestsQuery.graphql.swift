@@ -8,7 +8,7 @@ extension Github {
     static let operationName: String = "SearchPullRequests"
     static let operationDocument: ApolloAPI.OperationDocument = .init(
       definition: .init(
-        #"query SearchPullRequests($query: String!) { search(type: ISSUE, last: 100, query: $query) { __typename nodes { __typename ... on PullRequest { repository { __typename name owner { __typename login } } title url reviewDecision mergeable isDraft comments(last: 1) { __typename nodes { __typename author { __typename login } bodyText } } commits(last: 1) { __typename nodes { __typename commit { __typename url statusCheckRollup { __typename state } } } } } } } }"#
+        #"query SearchPullRequests($query: String!) { search(type: ISSUE, last: 100, query: $query) { __typename nodes { __typename ... on PullRequest { repository { __typename name owner { __typename login } } title url reviewDecision mergeable isDraft comments(last: 1) { __typename nodes { __typename author { __typename login } bodyText } } commits(last: 1) { __typename nodes { __typename commit { __typename url statusCheckRollup { __typename state } } } } reviews(states: APPROVED) { __typename totalCount } } } } }"#
       ))
 
     public var query: String
@@ -84,6 +84,7 @@ extension Github {
               .field("isDraft", Bool.self),
               .field("comments", Comments.self, arguments: ["last": 1]),
               .field("commits", Commits.self, arguments: ["last": 1]),
+              .field("reviews", Reviews?.self, arguments: ["states": "APPROVED"]),
             ] }
 
             /// The repository associated with this node.
@@ -102,6 +103,8 @@ extension Github {
             var comments: Comments { __data["comments"] }
             /// A list of commits present in this pull request's head branch not present in the base branch.
             var commits: Commits { __data["commits"] }
+            /// A list of reviews associated with the pull request.
+            var reviews: Reviews? { __data["reviews"] }
 
             /// Search.Node.AsPullRequest.Repository
             ///
@@ -263,6 +266,23 @@ extension Github {
                   }
                 }
               }
+            }
+
+            /// Search.Node.AsPullRequest.Reviews
+            ///
+            /// Parent Type: `PullRequestReviewConnection`
+            struct Reviews: Github.SelectionSet {
+              let __data: DataDict
+              init(_dataDict: DataDict) { __data = _dataDict }
+
+              static var __parentType: ApolloAPI.ParentType { Github.Objects.PullRequestReviewConnection }
+              static var __selections: [ApolloAPI.Selection] { [
+                .field("__typename", String.self),
+                .field("totalCount", Int.self),
+              ] }
+
+              /// Identifies the total count of items in the connection.
+              var totalCount: Int { __data["totalCount"] }
             }
           }
         }

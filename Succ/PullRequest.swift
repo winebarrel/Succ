@@ -40,6 +40,7 @@ class PullRequest: ObservableObject {
         let comment: String?
         let commentAuthor: String?
         let draft: Bool
+        let approvedCount: Int
 
         var id: String {
             commitUrl
@@ -152,7 +153,8 @@ class PullRequest: ObservableObject {
                     success: reviewResult == .success && checkResult == .success,
                     comment: pull.comments.nodes?.first??.bodyText,
                     commentAuthor: pull.comments.nodes?.first??.author?.login,
-                    draft: pull.isDraft
+                    draft: pull.isDraft,
+                    approvedCount: pull.reviews?.totalCount ?? 0
                 )
 
                 if pull.isDraft {
