@@ -46,16 +46,17 @@ struct PullRequestListView: View {
                         let label = pendingList ? node.title : node.statusEmoji + node.title
                         Text(label)
                             .multilineTextAlignment(.leading)
-                    }
-                    .underline(hoverId == node.id)
-                    .onHover { hovering in
-                        hoverId = hovering ? node.id : ""
-                    }
-                    if node.approvedCount > 0 {
-                        HStack(spacing: 0) {
-                            Image(systemName: "person.crop.circle.badge.checkmark")
-                            Text(String(node.approvedCount))
-                                .font(.footnote)
+                            .underline(hoverId == node.id)
+                            .onHover { hovering in
+                                hoverId = hovering ? node.id : ""
+                            }
+                        if node.approvedCount > 0 {
+                            HStack(spacing: 0) {
+                                Image(systemName: "person.crop.circle.badge.checkmark")
+                                Text(String(node.approvedCount))
+                                    .font(.footnote)
+                            }
+                            .foregroundColor(.primary)
                         }
                     }
                     if let comment = node.comment, let author = node.commentAuthor {
