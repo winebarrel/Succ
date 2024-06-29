@@ -51,6 +51,13 @@ struct PullRequestListView: View {
                     .onHover { hovering in
                         hoverId = hovering ? node.id : ""
                     }
+                    if node.approvedCount > 0 {
+                        HStack(spacing: 0) {
+                            Image(systemName: "person.crop.circle.badge.checkmark")
+                            Text(String(node.approvedCount))
+                                .font(.footnote)
+                        }
+                    }
                     if let comment = node.comment, let author = node.commentAuthor {
                         let commentText = Text(comment)
 

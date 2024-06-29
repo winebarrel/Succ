@@ -279,6 +279,7 @@ extension Github {
       case "VerifiableDomain": return Github.Objects.VerifiableDomain
       case "IssueCommentConnection": return Github.Objects.IssueCommentConnection
       case "PullRequestCommitConnection": return Github.Objects.PullRequestCommitConnection
+      case "PullRequestReviewConnection": return Github.Objects.PullRequestReviewConnection
       default: return nil
       }
     }

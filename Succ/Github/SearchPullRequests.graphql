@@ -31,6 +31,9 @@ query SearchPullRequests($query: String!) {
             }
           }
         }
+        reviews(states: APPROVED) {
+          totalCount
+        }
       }
     }
   }
