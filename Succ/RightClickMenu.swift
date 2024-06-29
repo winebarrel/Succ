@@ -28,6 +28,8 @@ struct RightClickMenu: View {
         }
         SettingsLink {
             Text("Settings")
+        }.preActionButtonStyle {
+            NSApp.activate(ignoringOtherApps: true)
         }
         Divider()
         Button("Quit") {
