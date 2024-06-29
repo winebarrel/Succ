@@ -16,6 +16,7 @@ struct SuccApp: App {
         let pop = NSPopover()
         pop.behavior = .transient
         pop.animates = false
+        pop.contentSize = NSSize(width: 500, height: 400)
         return pop
     }()
 
