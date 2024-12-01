@@ -4,6 +4,10 @@
 
 **Succ** is an application that notifies the user of pull requests that have passed testing and have been approved, or pull requests that have failed testing.
 
+> [!note]
+> Currently developing the new tool.
+> See https://github.com/winebarrel/Pulse
+
 ## Installation
 
 Download from [releases page](https://github.com/winebarrel/Succ/releases/latest).
